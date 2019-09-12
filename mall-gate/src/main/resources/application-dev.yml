@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mall-gate
+  cloud:
+    gateway:
+      routes:
+        - id: mall-goods
+          uri: lb://mall-goods
+          predicates:
+            - Path=/goods/**
+          filters:
+            - StripPrefix=1
+        - id: mall-mobile
+          uri: lb://mall-mobile
+          predicates:
+            - Path=/mobile/**
+          filters:
+            - StripPrefix=1
+        - id: mall-oms
+          uri: http://localhost:8092
+          predicates:
+            - Path=/oms/**
+          filters:
+            - StripPrefix=1
