@@ -3,6 +3,7 @@ package com.perenc.mall.mobile.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.perenc.mall.mobile.vo.UserVO;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -32,4 +33,5 @@ public class UserDO {
     private String name;
 
     private String tel;
+
 }

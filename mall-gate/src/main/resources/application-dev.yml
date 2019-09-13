@@ -14,7 +14,7 @@ spring:
           filters:
             - StripPrefix=1
         - id: mall-mobile
-          uri: lb://mall-mobile
+          uri: http://localhost:8090
           predicates:
             - Path=/mobile/**
           filters:

@@ -1,7 +1,12 @@
 package com.perenc.mall.mobile.controller;
 
+import com.perenc.mall.common.annotation.ResultHanlder;
+import com.perenc.mall.common.exception.BusinessException;
+import com.perenc.mall.mobile.entity.UserDO;
 import com.perenc.mall.mobile.service.GoodsService;
+import com.perenc.mall.mobile.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +33,23 @@ public class MobileController {
     @RequestMapping("test")
     public Object testMobileApi() {
         return "测试移动端接口";
+    }
+
+    @RequestMapping("list")
+    @ResultHanlder(msg = "测试数据成功")
+    public UserVO testMobileType(String type) {
+        if ("1".equals(type)) {
+            throw new BusinessException("接收到type=1，抛出业务异常");
+        }
+        UserDO userDO = new UserDO();
+        userDO.setName("ceshi");
+        userDO.setTel("18923721783");
+
+        UserVO userVO = UserVO.build();
+
+        BeanUtils.copyProperties(userDO, userVO);
+
+        return userVO;
     }
 
     @RequestMapping("get")

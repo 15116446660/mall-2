@@ -19,8 +19,7 @@ public class BusinessException extends RuntimeException {
 
     @Getter
     @Setter
-    private int code;
-
+    private int code = 1;
 
     public BusinessException() {
     }
