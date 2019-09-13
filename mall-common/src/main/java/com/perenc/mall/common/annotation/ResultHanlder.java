@@ -9,5 +9,5 @@ public @interface ResultHanlder {
 
     int code() default 0;
 
-    String msg() default "";
+    String msg() default "成功";
 }
