@@ -27,4 +27,6 @@ B) 领域模型命名规约
 5、平台端、商家端统一返回code：0：成功  1：失败
    移动端设置维护枚举类code：0成功  其他：失败
    
-6、Controller 只返回成功，其余所有失败都抛出异常，由全局异常类统一捕获并返回失败结果。
+6、Controller 只返回成功，其余所有失败都抛出异常，由全局异常类统一捕获并返回处理结果。
+
+7、Controller 统一返回XxxVO对象，所有code/msg统一由ResultAdvice进行封装处理，默认返回code：0，msg：成功，若要指定msg信息，请添加方法注释ResultHandler进行赋值
