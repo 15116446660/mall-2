@@ -1,16 +1,16 @@
-package com.perenc.mall.platform.entity.model;
+package com.perenc.mall.platform.service;
 
 /**
- * @ClassName: MerchantDO
- * @Description: 商家店铺实体类
+ * @ClassName: IMemberService
+ * @Description: 会员服务类
  *
  * @Author: GR
- * @Date: 2019-9-14 14:15 
+ * @Date: 2019-9-14 17:31 
  *
  * Modification History:
  * Date         Author      Description
  *---------------------------------------------------------*
  * 2019-9-14     GR      		
  */
-public class MerchantDO {
+public interface IMemberService {
 }

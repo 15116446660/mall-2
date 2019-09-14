@@ -4,13 +4,14 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.platform.entity.model.PlateDO;
 import com.perenc.mall.platform.mapper.PlateMapper;
+import com.perenc.mall.platform.service.IPlateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @ClassName: PlateServiceImpl
- * @Description:
+ * @Description: 板块服务类
  *
  * @Author: GR
  * @Date: 2019-9-14 14:00 
@@ -23,6 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @Transactional(rollbackFor = BusinessException.class)
-public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> {
+public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implements IPlateService {
 
 }

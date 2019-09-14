@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.platform.entity.model.AdvertiseDO;
 import com.perenc.mall.platform.mapper.AdvertiseMapper;
+import com.perenc.mall.platform.service.IAdvertiseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,5 +24,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @Transactional(rollbackFor = BusinessException.class)
-public class AdvertiseServiceImpl extends BaseService<AdvertiseMapper, AdvertiseDO> {
+public class AdvertiseServiceImpl extends BaseService<AdvertiseMapper, AdvertiseDO> implements IAdvertiseService {
 }

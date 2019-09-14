@@ -26,7 +26,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = BusinessException.class)
 public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> implements IBannerService {
 
-    public void test() {
 
-    }
 }

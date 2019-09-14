@@ -1,18 +1,18 @@
 package com.perenc.mall.platform.controller;
 
 import com.perenc.mall.common.controller.BaseController;
-import com.perenc.mall.platform.entity.model.PlateDO;
-import com.perenc.mall.platform.service.impl.PlateServiceImpl;
+import com.perenc.mall.platform.entity.model.AdvertiseDO;
+import com.perenc.mall.platform.service.impl.AdvertiseServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @ClassName: PlateController
- * @Description: 板块相关
+ * @ClassName: AdvertiseController
+ * @Description: 广告相关
  *
  * @Author: GR
- * @Date: 2019-9-14 13:57 
+ * @Date: 2019-9-14 17:15 
  *
  * Modification History:
  * Date         Author      Description
@@ -21,6 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("plate")
-public class PlateController extends BaseController<PlateServiceImpl, PlateDO> {
+@RequestMapping("advertise")
+public class AdvertiseController extends BaseController<AdvertiseServiceImpl, AdvertiseDO> {
 }
