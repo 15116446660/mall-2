@@ -20,7 +20,7 @@
 
     <modules>
         <module>mall-common</module>
-        <module>mall-gate</module>
+        <module>mall-gateway</module>
         <module>mall-goods</module>
         <module>mall-mobile</module>
         <module>mall-oms</module>
