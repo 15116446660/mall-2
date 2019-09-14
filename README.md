@@ -29,4 +29,6 @@ B) 领域模型命名规约
    
 6、Controller 只返回成功，其余所有失败都抛出异常，由全局异常类统一捕获并返回处理结果。
 
-7、Controller 统一返回XxxVO对象，所有code/msg统一由ResultAdvice进行封装处理，默认返回code：0，msg：成功，若要指定msg信息，请添加方法注释ResultHandler进行赋值
+7、Controller 建议返回XxxVO对象，所有code/msg统一由ResultAdvice进行封装处理，默认返回code：0，msg：成功，若要指定msg信息，请添加方法注释ResultHandler进行赋值。对于业务层无需返回数据的API（即void方法）的，Controller可直接返回结果数据。
+
+8、Service执行基本的增删改查可直接继承BaseServiceImpl类
