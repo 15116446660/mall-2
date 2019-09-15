@@ -1,5 +1,10 @@
 package com.perenc.mall.platform.entity.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 /**
  * @ClassName: UserDO
  * @Description: 用户实体类
@@ -12,5 +17,14 @@ package com.perenc.mall.platform.entity.model;
  *---------------------------------------------------------*
  * 2019-9-14     GR      		
  */
+@Data
+@TableName(value = "user")
 public class UserDO {
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    private String name;
+
+    private String tel;
 }

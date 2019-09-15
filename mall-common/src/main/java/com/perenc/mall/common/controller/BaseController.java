@@ -41,7 +41,8 @@ public class BaseController<Service extends BaseService, Entity> {
      * 2019-9-13       GR      		
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public Result saveEntity(Entity entity) {
+    public Result saveEntity(@RequestBody Entity entity) {
+        log.info("执行save方法，接收实体对象信息：｛｝", entity.toString());
         service.saveEntity(entity);
         return JsonResult.buildResultOk();
     }
@@ -60,7 +61,7 @@ public class BaseController<Service extends BaseService, Entity> {
      * 2019-9-13       GR
      */
     @RequestMapping(value = "/saveBatch", method = RequestMethod.POST)
-    public Result saveEntityBatch(List<Entity> list) {
+    public Result saveEntityBatch(@RequestBody List<Entity> list) {
         service.saveEntityBatch(list);
         return JsonResult.buildResultOk();
     }
@@ -79,7 +80,7 @@ public class BaseController<Service extends BaseService, Entity> {
      * 2019-9-13       GR
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public Result updateEntity(Entity entity) {
+    public Result updateEntity(@RequestBody Entity entity) {
         service.updateEntity(entity);
         return JsonResult.buildResultOk();
     }
@@ -97,8 +98,8 @@ public class BaseController<Service extends BaseService, Entity> {
      *---------------------------------------------------------*
      * 2019-9-13       GR
      */
-    @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public Result removeEntityById(@RequestParam(required = true) Integer id) {
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+    public Result removeEntityById(@PathVariable Integer id) {
         service.removeEntityById(id);
         return JsonResult.buildResultOk();
     }
@@ -117,7 +118,7 @@ public class BaseController<Service extends BaseService, Entity> {
      * 2019-9-13       GR
      */
     @RequestMapping(value = "/removeBatch", method = RequestMethod.POST)
-    public Result removeEntityBatchByIds(List<Integer> ids) {
+    public Result removeEntityBatchByIds(@RequestBody List<Integer> ids) {
         service.removeEntityBatchByIds(ids);
         return JsonResult.buildResultOk();
     }
