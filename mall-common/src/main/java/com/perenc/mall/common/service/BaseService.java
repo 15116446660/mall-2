@@ -59,6 +59,24 @@ public class BaseService<M extends BaseMapper<T>, T> {
         return mapper.selectPage(page, wrapper);
     }
 
+
+    /**
+     * @description: 获取所有实体对象
+     * @param wrapper
+     * @return java.util.List<T>
+     * @throws
+     * @author: GR
+     * @date: 2019-9-15 18:38
+     *
+     * modification history:
+     * date         author      description
+     *---------------------------------------------------------*
+     * 2019-9-15       GR
+     */
+    public List<T> listEntitys(Wrapper<T> wrapper) {
+        return mapper.selectList(wrapper);
+    }
+
     /**
      * @description: 保存实体对象
      * @param entity

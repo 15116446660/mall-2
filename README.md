@@ -34,3 +34,5 @@ B) 领域模型命名规约
 
 
 8、Service执行基本的增删改查可直接继承BaseService类
+
+9、返回结果集可参考Result、JsonResult类
