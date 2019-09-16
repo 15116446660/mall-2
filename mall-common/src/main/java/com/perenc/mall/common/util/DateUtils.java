@@ -1,6 +1,7 @@
 package com.perenc.mall.common.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -51,6 +52,22 @@ public class DateUtils {
      */
     public static String getCurrentDate() {
         return getCurrentTimeByFormat(DEFAULT_PATTERN);
+    }
+
+    /**
+     * @description: //TODO 获取当前日期，默认格式yyyy-MM-dd HH:mm:ss
+     * @return java.lang.String
+     * @throws
+     * @author: GR
+     * @date: 2019-7-15 11:50
+     *
+     * modification history:
+     * date         author      description
+     *---------------------------------------------------------*
+     * 2019-7-15       GR
+     */
+    public static String getCurrentTime() {
+        return getCurrentTimeByFormat(FULL_TRADITION_PATTERN);
     }
 
     /**

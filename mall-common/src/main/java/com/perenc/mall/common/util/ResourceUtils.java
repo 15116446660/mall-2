@@ -260,7 +260,7 @@ public class ResourceUtils {
      *             if the location wasn't a valid URI
      */
     public static URI toURI(String location) throws URISyntaxException {
-        return new URI(StringUtils.replace(location, " ", "%20"));
+        return new URI(StringHelper.replace(location, " ", "%20"));
     }
 
     /**
@@ -277,7 +277,7 @@ public class ResourceUtils {
             return "";
         }
         String path = ResourceUtils.class.getResource("/").getFile();
-        path = StringUtils.replace(path, "%20", " ");
+        path = StringHelper.replace(path, "%20", " ");
         return path;
     }
 

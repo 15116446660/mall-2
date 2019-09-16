@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @ClassName: StringUtils
+ * @ClassName: StringHelper
  * @Description: 字符串工具
  *
  * @Author: GR
@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  *---------------------------------------------------------*
  * 2019-7-15     GR      		
  */
-public class StringUtils {
+public class StringHelper {
 
     private static final char EXTENSION_SEPARATOR = '.';
 
@@ -73,7 +73,7 @@ public class StringUtils {
             if (count > maxCount) {
                 i--;
             }
-            if (StringUtils.hasLength(append)) {
+            if (StringHelper.hasLength(append)) {
                 if (s.codePointAt(i - 1) < 256) {
                     i -= 2;
                 } else {
@@ -99,7 +99,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public static String vaildNull(Object obj) {
-        if (StringUtils.hasLength(String.valueOf(obj))) {
+        if (StringHelper.hasLength(String.valueOf(obj))) {
             if (String.valueOf(obj).equalsIgnoreCase("null")) {
                 return "";
             } else {
@@ -590,7 +590,7 @@ public class StringUtils {
      */
     public static String upperFirst(String str) {
 
-        if (StringUtils.hasLength(str)) {
+        if (StringHelper.hasLength(str)) {
             return str.substring(0, 1).toUpperCase() + str.substring(1);
         } else {
             return "";
@@ -608,7 +608,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public static String lowerFirst(String str) {
-        if (StringUtils.hasLength(str)) {
+        if (StringHelper.hasLength(str)) {
             return str.substring(0, 1).toLowerCase() + str.substring(1);
         } else {
             return "";
@@ -640,7 +640,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public String left(String str, int len) {
-        if (StringUtils.hasLength(str)) {
+        if (StringHelper.hasLength(str)) {
             if (len > str.length()) {
                 return str;
             } else {
@@ -661,7 +661,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public String right(String str, int len) {
-        if (StringUtils.hasLength(str)) {
+        if (StringHelper.hasLength(str)) {
             if (len > str.length()) {
                 return str;
             } else {
@@ -682,7 +682,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public String reverse(String str) {
-        if (StringUtils.hasLength(str)) {
+        if (StringHelper.hasLength(str)) {
             StringBuffer buffer = new StringBuffer();
             buffer.append(str);
             return buffer.reverse().toString();
@@ -702,7 +702,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public String substr(String str, int startIndex) {
-        if (StringUtils.hasLength(str)) {
+        if (StringHelper.hasLength(str)) {
             return str.substring(startIndex);
         } else {
             return "";
@@ -722,7 +722,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public String substr(String str, int startIndex, int len) {
-        if (StringUtils.hasLength(str)) {
+        if (StringHelper.hasLength(str)) {
             if (startIndex + len > str.length()) {
                 return str.substring(startIndex);
             } else {
@@ -745,8 +745,8 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public String delete(String str, int startIndex, int len) {
-        if (StringUtils.hasLength(str)) {
-            return StringUtils.delete(str, this.substr(str, startIndex, len));
+        if (StringHelper.hasLength(str)) {
+            return StringHelper.delete(str, this.substr(str, startIndex, len));
         } else {
             return "";
         }
@@ -762,7 +762,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public int length(String str) {
-        if (StringUtils.hasLength(str)) {
+        if (StringHelper.hasLength(str)) {
             return str.length();
         } else {
             return 0;
@@ -779,7 +779,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public String ltrim(String str) {
-        if (!StringUtils.hasLength(str)) {
+        if (!StringHelper.hasLength(str)) {
             return "";
         } else {
             return str.replaceAll("\\s*", "");
@@ -796,7 +796,7 @@ public class StringUtils {
      * @Exception 异常对象
      */
     public String rtrim(String str) {
-        if (!StringUtils.hasLength(str)) {
+        if (!StringHelper.hasLength(str)) {
             return "";
         } else {
             return str.replaceAll("\\s*$", "");
@@ -860,10 +860,10 @@ public class StringUtils {
     }
 
     public static String getPropertyName(String columnName) {
-        if (StringUtils.hasLength(columnName)) {
+        if (StringHelper.hasLength(columnName)) {
             columnName = columnName.toLowerCase();
-            columnName = StringUtils.replace(columnName, "_", "");
-            columnName = StringUtils.replace(columnName, "-", "");
+            columnName = StringHelper.replace(columnName, "_", "");
+            columnName = StringHelper.replace(columnName, "-", "");
         } else {
             columnName = "";
         }
@@ -937,7 +937,7 @@ public class StringUtils {
      * @return
      */
     public static String getTablename(String regionCode) {
-        if (StringUtils.hasLength(regionCode)) {
+        if (StringHelper.hasLength(regionCode)) {
             String areanum = regionCode.substring(0, 4);
             if ("5200".equalsIgnoreCase(areanum)) {
                 areanum = "info";

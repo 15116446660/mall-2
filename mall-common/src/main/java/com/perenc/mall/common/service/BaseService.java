@@ -3,6 +3,7 @@ package com.perenc.mall.common.service;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.perenc.mall.common.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -91,6 +92,7 @@ public class BaseService<M extends BaseMapper<T>, T> {
      * 2019-9-13       GR
      */
     public void saveEntity(T entity) {
+        EntityUtils.build().setCreateInfo(entity);
         mapper.insert(entity);
     }
 
@@ -108,7 +110,9 @@ public class BaseService<M extends BaseMapper<T>, T> {
      * 2019-9-13       GR
      */
     public void saveEntityBatch(List<T> list) {
-
+        for (T t : list) {
+            EntityUtils.build().setCreateInfo(t);
+        }
     }
 
     /**
@@ -159,6 +163,7 @@ public class BaseService<M extends BaseMapper<T>, T> {
      * 2019-9-13       GR
      */
     public void updateEntity(T entity) {
+        EntityUtils.build().setUpdatedInfo(entity);
         mapper.updateById(entity);
     }
 }
