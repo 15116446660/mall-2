@@ -7,11 +7,11 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
- * @ClassName: MemberDO
- * @Description: 会员实体类
+ * @ClassName: MemberGradeDO
+ * @Description: 会员等级实体类
  *
  * @Author: GR
- * @Date: 2019-9-14 17:29 
+ * @Date: 2019-9-14 17:43 
  *
  * Modification History:
  * Date         Author      Description
@@ -19,24 +19,18 @@ import lombok.Data;
  * 2019-9-14     GR      		
  */
 @Data
-@TableName(value = "platform_member")
-public class MemberDO {
+@TableName(value = "platform_member_grade")
+public class MemberGradeDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String name;
-    private String phone;
-    private String wechat;
-    private String balance;
-    @TableField("head_img")
-    private String head_img;
-    @TableField("'desc'")
-    private String desc;
+    private String upgrade;
+    @TableField("card_img")
+    private String card_img;
+    private String level;
+    @TableField("is_enable")
+    private String enable;
     private String remark;
-    private Integer sex;
-    private String gold;
-    private String grade;
-    private String birthday;
-    private String address;
     @TableField("create_user")
     private String create_user;
     @TableField("update_user")

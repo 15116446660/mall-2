@@ -1,10 +1,10 @@
 package com.perenc.mall.platform.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.perenc.mall.platform.entity.model.MerchantDO;
+import com.perenc.mall.platform.entity.model.StoreDO;
 
 /**
- * @ClassName: MerchantMapper
+ * @ClassName: StoreMapper
  * @Description:
  *
  * @Author: GR
@@ -15,5 +15,5 @@ import com.perenc.mall.platform.entity.model.MerchantDO;
  *---------------------------------------------------------*
  * 2019-9-14     GR      		
  */
-public interface MerchantMapper extends BaseMapper<MerchantDO> {
+public interface StoreMapper extends BaseMapper<StoreDO> {
 }

@@ -23,7 +23,7 @@ import lombok.Data;
 public class BannerDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String sort;
+    private Integer sort;
     private String name;
     @TableField("'desc'")
     private String desc;

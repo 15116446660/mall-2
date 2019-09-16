@@ -1,7 +1,7 @@
 package com.perenc.mall.platform.service;
 
 /**
- * @ClassName: IMerchantService
+ * @ClassName: IStoreService
  * @Description: 商家服务类
  *
  * @Author: GR
@@ -12,5 +12,5 @@ package com.perenc.mall.platform.service;
  *---------------------------------------------------------*
  * 2019-9-14     GR      		
  */
-public interface IMerchantService {
+public interface IStoreService {
 }

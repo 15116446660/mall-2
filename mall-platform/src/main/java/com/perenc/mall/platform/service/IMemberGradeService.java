@@ -1,16 +1,16 @@
-package com.perenc.mall.platform.entity.model;
+package com.perenc.mall.platform.service;
 
 /**
- * @ClassName: GradeDO
- * @Description: 会员等级实体类
+ * @ClassName: IMemberGradeService
+ * @Description: 会员等级服务类
  *
  * @Author: GR
- * @Date: 2019-9-14 17:43 
+ * @Date: 2019-9-14 17:44 
  *
  * Modification History:
  * Date         Author      Description
  *---------------------------------------------------------*
  * 2019-9-14     GR      		
  */
-public class GradeDO {
+public interface IMemberGradeService {
 }

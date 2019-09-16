@@ -44,8 +44,8 @@ public class BaseController<Service extends BaseService, Entity> {
      *---------------------------------------------------------*
      * 2019-9-15       GR
      */
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public Result getEntityById(@PathVariable Integer id) {
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public Result getEntityById(Integer id) {
         log.info("执行get方法，接收实体对象ID为{}", id);
         Object entity = service.getEntityById(id);
         log.info("获取实体对象信息：{}", entity.toString());
@@ -161,8 +161,8 @@ public class BaseController<Service extends BaseService, Entity> {
      *---------------------------------------------------------*
      * 2019-9-13       GR
      */
-    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
-    public Result removeEntityById(@PathVariable Integer id) {
+    @RequestMapping(value = "/remove", method = RequestMethod.GET)
+    public Result removeEntityById(Integer id) {
         log.info("执行remove方法，接收实体对象信息ID为{}", id);
         service.removeEntityById(id);
         return JsonResult.buildResultOk();

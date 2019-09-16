@@ -1,10 +1,10 @@
 package com.perenc.mall.platform.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.perenc.mall.platform.entity.model.GradeDO;
+import com.perenc.mall.platform.entity.model.MemberGradeDO;
 
 /**
- * @ClassName: GradeMapper
+ * @ClassName: MemberGradeMapper
  * @Description:
  *
  * @Author: GR
@@ -15,5 +15,5 @@ import com.perenc.mall.platform.entity.model.GradeDO;
  *---------------------------------------------------------*
  * 2019-9-14     GR      		
  */
-public interface GradeMapper extends BaseMapper<GradeDO> {
+public interface MemberGradeMapper extends BaseMapper<MemberGradeDO> {
 }

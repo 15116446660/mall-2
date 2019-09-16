@@ -1,8 +1,8 @@
 package com.perenc.mall.platform.controller;
 
 import com.perenc.mall.common.controller.BaseController;
-import com.perenc.mall.platform.entity.model.MerchantDO;
-import com.perenc.mall.platform.service.impl.MerchantServiceImpl;
+import com.perenc.mall.platform.entity.model.StoreDO;
+import com.perenc.mall.platform.service.impl.StoreServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,5 +22,5 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("merchant")
-public class MerchantController extends BaseController<MerchantServiceImpl, MerchantDO> {
+public class MerchantController extends BaseController<StoreServiceImpl, StoreDO> {
 }

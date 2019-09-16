@@ -17,3 +17,5 @@ mybatis-plus:
 #logging:
 #  level:
 #    com.perenc.mall.mobile.mappper: debug
+logging:
+  file: F:\wanlvcheng\work project\mall-out.log
