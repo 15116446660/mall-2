@@ -25,7 +25,8 @@ public class BannerDO {
     private Integer id;
     private String sort;
     private String name;
-    private String describe;
+    @TableField("'desc'")
+    private String desc;
     private String remark;
     @TableField(value = "is_enable")
     private Integer enable;

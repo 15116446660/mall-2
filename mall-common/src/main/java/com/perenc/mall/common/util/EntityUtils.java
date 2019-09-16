@@ -6,6 +6,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,12 +31,15 @@ public class EntityUtils {
         Map<String, Object> map = new HashMap<>();
         map.put("createUser", "创建用户");
         map.put("createTime", DateUtils.getCurrentTime());
+
         try {
             BeanUtils.populate(entity, map);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            log.info("对实体常驻字段注入失败：{}", e.getMessage());
+        } catch (InvocationTargetException e) {
             log.info("对实体常驻字段注入失败：{}", e.getMessage());
         }
+
     }
 
     /**
