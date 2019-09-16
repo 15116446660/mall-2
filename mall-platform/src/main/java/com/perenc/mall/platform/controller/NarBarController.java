@@ -21,6 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("narBar")
+@RequestMapping("narbar")
 public class NarBarController extends BaseController<NarBarServiceImpl, NarBarDO> {
 }
