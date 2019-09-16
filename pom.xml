@@ -22,8 +22,10 @@
         <module>mall-common</module>
         <module>mall-gateway</module>
         <module>mall-goods</module>
-        <module>mall-mobile</module>
         <module>mall-oms</module>
+        <module>mall-mobile</module>
+        <module>mall-merchant</module>
+        <module>mall-platform</module>
     </modules>
 
     <dependencies>
