@@ -23,21 +23,17 @@ import javax.validation.constraints.NotBlank;
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
 public class BannerDTO {
-    private String id;
+    private Integer id;
     @NotBlank(message = "title不能为空")
     private String title;
     @NotBlank(message = "fileUrl不能为空")
     private String fileUrl;
-    @Min(0)
-    @NotBlank(message = "sort不能为空，且必须为数字")
-    private String sort;
-    @NotBlank(message = "desc不能为空")
+    @Min(value = 0,message = "sort不能为空")
+    private Integer sort;
     private String desc;
-    @Min(0)
-    @NotBlank(message = "skipType不能为空，且必须为数字")
-    private String skipType;
+    @Min(value = 0,message = "skipType不能为空")
+    private Integer skipType;
     @NotBlank(message = "skipContent不能为空")
     private String skipContent;
-    @NotBlank(message = "status不能为空")
-    private String status;
+    private Integer status;
 }

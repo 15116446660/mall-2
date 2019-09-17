@@ -27,19 +27,18 @@ import lombok.experimental.Accessors;
 public class BannerDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String name;
-    @TableField(value = "img_logo")
-    private String imgLogo;
+    private String title;
+    @TableField(value = "file_url")
+    private String fileUrl;
     private Integer sort;
     @TableField(value = "`desc`")
     private String desc;
     private String remark;
-    @TableField(value = "is_enable")
-    private Integer enable;
-    @TableField(value = "jump_type")
-    private Integer jumpType;
-    @TableField(value = "jump_content")
-    private String jumpContent;
+    private Integer status;
+    @TableField(value = "skip_type")
+    private Integer skipType;
+    @TableField(value = "skip_content")
+    private String skipContent;
     @TableField(value = "create_user")
     private String createUser;
     @TableField(value = "update_user")

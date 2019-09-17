@@ -28,6 +28,25 @@ public interface IBannerService {
      */
     void saveBanner(BannerDTO bannerDTO);
 
+    /**
+     * @description: 获取轮播图
+     * @param id
+     * @return com.perenc.mall.platform.entity.model.BannerDO
+     * @author: GR
+     * @date: 2019/9/17       
+     */
+    BannerDO getBanner(Integer id);
+
+
+    /**
+     * @description: 根据ID移除轮播图
+     * @param id
+     * @return void
+     * @author: GR
+     * @date: 2019/9/17
+     */
+    void removeBannerById(Integer id);
+
 
     /**
      * @description: 获取轮播图列表

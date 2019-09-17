@@ -8,7 +8,6 @@ import com.perenc.mall.platform.entity.model.BannerDO;
 import com.perenc.mall.platform.mapper.BannerMapper;
 import com.perenc.mall.platform.service.IBannerService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,15 +33,21 @@ public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> imple
 
     @Override
     public void saveBanner(BannerDTO bannerDTO) {
-        BannerDO bannerDO = BannerDO.build()
-                .setName(bannerDTO.getTitle())
-                .setImgLogo(bannerDTO.getFileUrl())
-                .setSort(Integer.valueOf(bannerDTO.getSort()))
-                .setDesc(bannerDTO.getDesc())
-                .setJumpType(Integer.valueOf(bannerDTO.getSkipType()))
-                .setJumpContent(bannerDTO.getSkipContent());
+        BannerDO bannerDO = BannerDO.build();
+        BeanUtils.copyProperties(bannerDTO, bannerDO);
         super.saveEntity(bannerDO);
     }
+
+    @Override
+    public BannerDO getBanner(Integer id) {
+        return super.getEntityById(id);
+    }
+
+    @Override
+    public void removeBannerById(Integer id) {
+        super.removeEntityById(id);
+    }
+
 
     @Override
     public List<BannerDO> listBanners() {
@@ -55,25 +60,17 @@ public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> imple
 
     @Override
     public void updateBanner(BannerDTO bannerDTO) {
-        if (StringUtils.isBlank(bannerDTO.getId())) {
+        if (null == bannerDTO.getId()) {
             throw new BusinessException("轮播图ID不能为空");
         }
-
-        BannerDO bannerDO = BannerDO.build()
-                .setId(Integer.valueOf(bannerDTO.getId()))
-                .setName(bannerDTO.getTitle())
-                .setImgLogo(bannerDTO.getFileUrl())
-                .setSort(Integer.valueOf(bannerDTO.getSort()))
-                .setDesc(bannerDTO.getDesc())
-                .setJumpType(Integer.valueOf(bannerDTO.getSkipType()))
-                .setJumpContent(bannerDTO.getSkipContent())
-                .setEnable(Integer.valueOf(bannerDTO.getStatus()));
+        BannerDO bannerDO = BannerDO.build();
+        BeanUtils.copyProperties(bannerDTO, bannerDO);
         super.updateEntity(bannerDO);
     }
 
     @Override
     public void updateBannerStatus(Integer id, Integer status) {
-        BannerDO bannerDO = BannerDO.build().setId(id).setEnable(status);
+        BannerDO bannerDO = BannerDO.build().setId(id).setStatus(status);
         super.updateEntity(bannerDO);
     }
 }

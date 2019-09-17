@@ -1,6 +1,5 @@
 package com.perenc.mall.platform.controller;
 
-import com.perenc.mall.common.controller.BaseController;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
@@ -8,7 +7,7 @@ import com.perenc.mall.common.result.Result;
 import com.perenc.mall.platform.entity.dto.BannerDTO;
 import com.perenc.mall.platform.entity.model.BannerDO;
 import com.perenc.mall.platform.entity.vo.BannerVO;
-import com.perenc.mall.platform.service.impl.BannerServiceImpl;
+import com.perenc.mall.platform.service.IBannerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ import java.util.List;
 public class BannerController {
 
     @Autowired
-    private BannerServiceImpl service;
+    private IBannerService service;
 
 
     /**
@@ -65,16 +64,9 @@ public class BannerController {
      * @date: 2019/9/17
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<BannerVO> listBanners() {
+    public List<BannerDO> listBanners() {
         List<BannerDO> listBannerDO = service.listBanners();
-        List<BannerVO> listBannerVO = new ArrayList<>();
-        Iterator<BannerDO> iterator = listBannerDO.iterator();
-        while (iterator.hasNext()) {
-            BannerVO bannerVO = BannerVO.build();
-            BeanUtils.copyProperties(iterator.next(), bannerVO);
-            listBannerVO.add(bannerVO);
-        }
-        return listBannerVO;
+        return listBannerDO;
     }
 
     /**
@@ -85,15 +77,12 @@ public class BannerController {
      * @date: 2019/9/17
      */
     @RequestMapping(value = "get", method = RequestMethod.POST)
-    public BannerVO getBanner(@RequestParam Integer id) {
-        BannerDO bannerDO = service.getEntityById(id);
+    public BannerDO getBanner(@RequestParam Integer id) {
+        BannerDO bannerDO = service.getBanner(id);
         if (null == bannerDO) {
             throw new BusinessException("ID为" + id + "的轮播图不存在");
         }
-
-        BannerVO bannerVO = BannerVO.build();
-        BeanUtils.copyProperties(bannerDO, bannerVO);
-        return bannerVO;
+        return bannerDO;
     }
 
     /**
@@ -133,7 +122,7 @@ public class BannerController {
      */
     @RequestMapping(value = "del", method = RequestMethod.POST)
     public Result removeBanner(@RequestParam Integer id) {
-        service.removeEntityById(id);
+        service.removeBannerById(id);
         return JsonResult.buildResultOk();
     }
 
