@@ -42,4 +42,24 @@ public class GlobalExceptionHandler {
         log.info("======捕获businessException：code={}，msg={}", businessException.getCode(), businessException.getMessage());
         return JsonResult.buildResultFail(businessException.getCode(), businessException.getMessage());
     }
+
+
+    /**
+     * @description: 处理所有BusinessException
+     * @param validResultException
+     * @return com.perenc.mall.common.result.Result
+     * @throws
+     * @author: GR
+     * @date: 2019-9-13 10:44
+     *
+     * modification history:
+     * date         author      description
+     *---------------------------------------------------------*
+     * 2019-9-13       GR
+     */
+    @ExceptionHandler(ValidResultException.class)
+    public Result ValidResultExceptionHandler(ValidResultException validResultException) {
+        log.info("======捕获validResultException：code={}，msg={}", validResultException.getCode(), validResultException.getMessage());
+        return JsonResult.buildResultFail(validResultException.getCode(), validResultException.getMessage());
+    }
 }

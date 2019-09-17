@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.perenc.mall.common.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,12 +14,27 @@ import java.util.List;
  * @Description:
  *
  * @Author: GR
- * @Date: 2019-9-13 19:36 
- *
- * Modification History:
- * Date         Author      Description
- *---------------------------------------------------------*
- * 2019-9-13     GR      		
+ * @Date: 2019-9-13 19:36
+ *                    .::::.
+ *                  .::::::::.
+ *                 :::::::::::
+ *             ..:::::::::::'
+ *           '::::::::::::'
+ *             .::::::::::
+ *        '::::::::::::::..
+ *             ..::::::::::::.
+ *           ``::::::::::::::::
+ *            ::::``:::::::::'        .:::.
+ *           ::::'   ':::::'       .::::::::.
+ *         .::::'      ::::     .:::::::'::::.
+ *        .:::'       :::::  .:::::::::' ':::::.
+ *       .::'        :::::.:::::::::'      ':::::.
+ *      .::'         ::::::::::::::'         ``::::.
+ *  ...:::           ::::::::::::'              ``::.
+ * ```` ':.          ':::::::::'                  ::::..
+ *                    '.:::::'                    ':'````..
+ * ..........................................................
+ *          美女保佑             永无BUG
  */
 public class BaseService<M extends BaseMapper<T>, T> {
 
