@@ -1,5 +1,6 @@
 package com.perenc.mall.platform.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.platform.entity.model.BannerDO;
@@ -8,6 +9,8 @@ import com.perenc.mall.platform.service.IBannerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @ClassName: BannerServiceImpl
@@ -26,5 +29,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = BusinessException.class)
 public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> implements IBannerService {
 
-
+    @Override
+    public List<BannerDO> listBanners() {
+        QueryWrapper<BannerDO> queryWrapper = new QueryWrapper<>();
+        // 查询所有可用的轮播图
+        queryWrapper.eq("enable", 0);
+        // 进行升序排序
+        queryWrapper.orderByAsc("sort");
+        List<BannerDO> listBanner = super.listEntitys(queryWrapper);
+        return listBanner;
+    }
 }
