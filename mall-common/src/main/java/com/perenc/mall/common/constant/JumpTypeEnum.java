@@ -1,8 +1,8 @@
 package com.perenc.mall.common.constant;
 
 /**
- * @ClassName: JumpType
- * @Description: 跳转类型 商品 0，店铺 1，H5连接 2，小程序页面 3，其他 4，多商品：5
+ * @ClassName: JumpTypeEnum
+ * @Description: 跳转类型枚举 商品 0，店铺 1，H5连接 2，小程序页面 3，其他 4，多商品：5
  *
  * @Author: GR
  * @Date: 2019/9/16 10:58 
@@ -12,41 +12,43 @@ package com.perenc.mall.common.constant;
  *---------------------------------------------------------*
  * 2019/9/16     GR      		
  */
-public class JumpType {
+public enum JumpTypeEnum {
 
     /**
      * @description: 商品
      * @author: GR
      * @date: 2019/9/16 11:00
      */
-    public static final int GOODS = 0;
-
+    GOODS,
     /**
      * @description: 店铺
      * @author: GR
      * @date: 2019/9/16 11:00
      */
-    public static final int STORE = 1;
-
+    STORE,
     /**
      * @description: H5
      * @author: GR
      * @date: 2019/9/16 11:00
      */
-    public static final int H5 = 2;
-
+    H5,
     /**
      * @description: 小程序
      * @author: GR
      * @date: 2019/9/16 11:00
      */
-    public static final int SMALL_ROUTINE = 3;
-
+    SMALL_ROUTINE,
     /**
      * @description: 其它
      * @author: GR
      * @date: 2019/9/16 11:01
      */
-    public static final int OTHER = 4;
+    OTHER,
+    /**
+     * @description: 多商品
+     * @author: GR
+     * @date: 2019/9/16 11:01
+     */
+    MORE_GOODS
 
 }
