@@ -23,8 +23,10 @@ import lombok.Data;
 public class BannerDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Integer sort;
     private String name;
+    @TableField(value = "img_logo")
+    private String imgLogo;
+    private Integer sort;
     @TableField("'desc'")
     private String desc;
     private String remark;
@@ -38,8 +40,6 @@ public class BannerDO {
     private String goodsId;
     @TableField(value = "link_url")
     private String linkUrl;
-    @TableField(value = "img_url")
-    private String imgUrl;
     @TableField(value = "create_user")
     private String createUser;
     @TableField(value = "update_user")
