@@ -19,15 +19,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(staticName = "build")
 public class BannerVO {
     private Integer id;
-    private String name;
-    private String imgLogo;
+    /**
+     * @description: 轮播图文件url
+     * @author: GR
+     * @date: 2019/9/17 11:52
+     */
+    private String file;
+    /**
+     * @description: 轮播图标题
+     * @author: GR
+     * @date: 2019/9/17 11:52
+     */
+    private String title;
+    private String skipType;
+    private String skipContent;
     private Integer sort;
-    private String desc;
-    private String remark;
-    private Integer enable;
-    private Integer jumpType;
-    private String storeId;
-    private String goodsId;
-    private String linkUrl;
-    private String createTime;
+    private Integer desc;
+    private Integer status;
 }
