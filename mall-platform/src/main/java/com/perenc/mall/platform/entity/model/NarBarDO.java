@@ -27,6 +27,7 @@ public class NarBarDO {
     @TableField("img_logo")
     private String img_logo;
     private Integer sort;
+    @TableField("`desc`")
     private String desc;
     private String remark;
     @TableField("link_url")

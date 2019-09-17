@@ -27,7 +27,7 @@ public class AdvertiseDO {
     @TableField(value = "img_url")
     private String imgUrl;
     private String sort;
-    @TableField(value = "'desc'")
+    @TableField(value = "`desc`")
     private String desc;
     private String remark;
     @TableField(value = "link_url")

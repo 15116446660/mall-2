@@ -27,7 +27,7 @@ public class PlateDO {
     @TableField(value = "img_logo")
     private String imgLogo;
     private String sort;
-    @TableField("'desc'")
+    @TableField("`desc`")
     private String desc;
     private String remark;
     @TableField(value = "link_url")

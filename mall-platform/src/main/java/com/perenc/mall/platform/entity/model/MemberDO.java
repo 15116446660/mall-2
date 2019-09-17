@@ -29,7 +29,7 @@ public class MemberDO {
     private String balance;
     @TableField("head_img")
     private String head_img;
-    @TableField("'desc'")
+    @TableField("`desc`")
     private String desc;
     private String remark;
     private Integer sex;
