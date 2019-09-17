@@ -61,7 +61,7 @@ public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> imple
     @Override
     public void updateBanner(BannerDTO bannerDTO) {
         if (null == bannerDTO.getId()) {
-            throw new BusinessException("轮播图ID不能为空");
+            throw new BusinessException("广告ID不能为空");
         }
         BannerDO bannerDO = BannerDO.build();
         BeanUtils.copyProperties(bannerDTO, bannerDO);

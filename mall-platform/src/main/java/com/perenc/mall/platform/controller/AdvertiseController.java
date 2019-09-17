@@ -80,7 +80,7 @@ public class AdvertiseController {
     public AdvertiseDO getBanner(@RequestParam Integer id) {
         AdvertiseDO advertiseDO = service.getAdvertiseById(id);
         if (null == advertiseDO) {
-            throw new BusinessException("ID为" + id + "的轮播图不存在");
+            throw new BusinessException("ID为" + id + "的广告不存在");
         }
         return advertiseDO;
     }
