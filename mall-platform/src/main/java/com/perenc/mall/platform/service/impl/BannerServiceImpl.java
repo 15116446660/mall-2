@@ -33,7 +33,7 @@ public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> imple
     public List<BannerDO> listBanners() {
         QueryWrapper<BannerDO> queryWrapper = new QueryWrapper<>();
         // 查询所有可用的轮播图
-        queryWrapper.eq("enable", 0);
+        queryWrapper.eq("is_enable", 0);
         // 进行升序排序
         queryWrapper.orderByAsc("sort");
         List<BannerDO> listBanner = super.listEntitys(queryWrapper);
