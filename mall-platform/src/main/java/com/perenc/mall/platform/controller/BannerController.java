@@ -99,24 +99,38 @@ public class BannerController {
     /**
      * @description: 更新Banner启用状态
      * @param id
-     * @param enable
+     * @param status
      * @return com.perenc.mall.common.result.Result
      * @author: GR
      * @date: 2019/9/17
      */
     @RequestMapping(value = "updateStatus", method = RequestMethod.POST)
-    public Result updateBannerStatus(@RequestParam Integer id, @RequestParam Integer enable) {
-        service.updateBannerStatus(id, enable);
+    public Result updateBannerStatus(@RequestParam Integer id, @RequestParam Integer status) {
+        service.updateBannerStatus(id, status);
         return JsonResult.buildResultOk();
     }
 
 
+    /**
+     * @description: 轮播图更新
+     * @param bannerDTO
+     * @return com.perenc.mall.common.result.Result
+     * @author: GR
+     * @date: 2019/9/17
+     */
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result updateBanner(@RequestBody BannerDTO bannerDTO) {
         service.updateBanner(bannerDTO);
         return JsonResult.buildResultOk();
     }
 
+    /**
+     * @description: 轮播图删除
+     * @param id
+     * @return com.perenc.mall.common.result.Result
+     * @author: GR
+     * @date: 2019/9/17
+     */
     @RequestMapping(value = "del", method = RequestMethod.POST)
     public Result removeBanner(@RequestParam Integer id) {
         service.removeEntityById(id);
