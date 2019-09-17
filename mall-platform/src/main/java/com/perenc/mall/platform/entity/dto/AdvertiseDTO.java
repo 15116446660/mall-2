@@ -8,11 +8,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 /**
- * @ClassName: BannerDTO
- * @Description: 轮播图上传数据
+ * @ClassName: AdvertiseDTO
+ * @Description: 广告上传数据
  *
  * @Author: GR
- * @Date: 2019/9/17 11:35 
+ * @Date: 2019/9/17 15:26 
  *
  * Modification History:
  * Date         Author      Description
@@ -22,16 +22,18 @@ import javax.validation.constraints.NotBlank;
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-public class BannerDTO {
+public class AdvertiseDTO {
     private Integer id;
     @NotBlank(message = "title不能为空")
     private String title;
     @NotBlank(message = "fileUrl不能为空")
     private String fileUrl;
-    @Min(value = 0, message = "sort不能为空")
+    @Min(value = 0)
     private Integer sort;
+    @Min(value = 0)
+    private Integer type;
     private String desc;
-    @Min(value = 0, message = "skipType不能为空")
+    @Min(value = 0)
     private Integer skipType;
     @NotBlank(message = "skipContent不能为空")
     private String skipContent;
