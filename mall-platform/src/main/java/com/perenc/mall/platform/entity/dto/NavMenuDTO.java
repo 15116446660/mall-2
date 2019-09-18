@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * @ClassName: NavMenuDTO
- * @Description:
+ * @Description: 导航菜单上传数据
  *
  * @Author: GR
  * @Date: 2019/9/17 19:28 

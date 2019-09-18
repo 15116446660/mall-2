@@ -254,11 +254,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
 
     @Override
     public List<NavMenuDO> listNavMenus() {
-        QueryWrapper<NavMenuDO> queryWrapper = new QueryWrapper<>();
-        // 进行升序排序
-        queryWrapper.orderByAsc("sort");
-        List<NavMenuDO> listNavMenu = super.listEntitys(queryWrapper);
-        return listNavMenu;
+        return super.listEntitys(new QueryWrapper<NavMenuDO>().orderByAsc("sort"));
     }
 
     @Override
@@ -310,7 +306,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
                 throw new BusinessException("轮播图数据不能为空");
             }
             //更新新的轮播图数据ID
-            List<Integer> newRelatedNavMenuBannerDOIdList = convertIntegerList(newRelatedNavMenuBannerDOIdArray);
+            List<Integer> newRelatedNavMenuBannerDOIdList = ListUtils.convertIntegerList(newRelatedNavMenuBannerDOIdArray);
 
             //查询符合条件的的轮播图数据
             QueryWrapper<RelatedNavMenuBannerDO> relatedNavMenuBannerDOQueryWrapper = new QueryWrapper<>();
@@ -359,7 +355,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
                 throw new BusinessException("商品数据不能为空");
             }
             //更新新的商品数据ID
-            List<Integer> newRelatedNavMenuGoodsDOIdList = convertIntegerList(newRelatedNavMenuGoodsDOIdArray);
+            List<Integer> newRelatedNavMenuGoodsDOIdList = ListUtils.convertIntegerList(newRelatedNavMenuGoodsDOIdArray);
 
             //查询符合条件的的商品数据
             QueryWrapper<RelatedNavMenuGoodsDO> relatedNavMenuGoodsDOQueryWrapper = new QueryWrapper<>();
@@ -398,22 +394,5 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
             /***** 导航菜单-商品关系对象  end ****/
         }
         super.updateEntity(navMenuDO);
-    }
-
-    /**
-     * @description: 字符串数组转整形数组
-     * @param array
-     * @return java.util.List<java.lang.Integer>
-     * @author: GR
-     * @date: 2019/9/18
-     */
-    private List<Integer> convertIntegerList(String[] array) {
-        List<Integer> list = new ArrayList<>();
-        for (String str : array) {
-            if (!StringUtils.isBlank(str) && StringHelper.isNumeric(str)) {
-                list.add(Integer.valueOf(str));
-            }
-        }
-        return list;
     }
 }

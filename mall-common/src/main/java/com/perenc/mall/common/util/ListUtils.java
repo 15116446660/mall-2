@@ -1,5 +1,7 @@
 package com.perenc.mall.common.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -71,6 +73,23 @@ public class ListUtils {
                 list.add(i);
             }
         });
+        return list;
+    }
+
+    /**
+     * @description: 字符串数组转整形数组
+     * @param array
+     * @return java.util.List<java.lang.Integer>
+     * @author: GR
+     * @date: 2019/9/18
+     */
+    public static List<Integer> convertIntegerList(String[] array) {
+        List<Integer> list = new ArrayList<>();
+        for (String str : array) {
+            if (!StringUtils.isBlank(str) && StringHelper.isNumeric(str)) {
+                list.add(Integer.valueOf(str));
+            }
+        }
         return list;
     }
 
