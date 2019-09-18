@@ -1,7 +1,7 @@
 package com.perenc.mall.common.constant;
 
 /**
- * @ClassName: SexEnum
+ * @ClassName: SexConstants
  * @Description: 性别
  *
  * @Author: GR
@@ -12,7 +12,7 @@ package com.perenc.mall.common.constant;
  *---------------------------------------------------------*
  * 2019/9/16     GR     		
  */
-public enum SexEnum {
+public enum SexConstants {
 
     /**
      * @description: 男

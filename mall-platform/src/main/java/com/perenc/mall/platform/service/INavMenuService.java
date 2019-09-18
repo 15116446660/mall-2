@@ -4,6 +4,7 @@ import com.perenc.mall.platform.entity.dto.BannerDTO;
 import com.perenc.mall.platform.entity.dto.NavMenuDTO;
 import com.perenc.mall.platform.entity.model.BannerDO;
 import com.perenc.mall.platform.entity.model.NavMenuDO;
+import com.perenc.mall.platform.entity.vo.NavMenuVO;
 
 import java.util.List;
 
@@ -33,11 +34,11 @@ public interface INavMenuService {
     /**
      * @description: 根据ID获取导航菜单
      * @param id
-     * @return com.perenc.mall.platform.entity.model.NavMenuDO
+     * @return com.perenc.mall.platform.entity.model.NavMenuVO
      * @author: GR
      * @date: 2019/9/17
      */
-    NavMenuDO getNavMenu(Integer id);
+    NavMenuVO getNavMenu(Integer id);
 
 
     /**

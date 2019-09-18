@@ -6,17 +6,13 @@ import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
 import com.perenc.mall.platform.entity.dto.BannerDTO;
 import com.perenc.mall.platform.entity.model.BannerDO;
-import com.perenc.mall.platform.entity.vo.BannerVO;
 import com.perenc.mall.platform.service.IBannerService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**

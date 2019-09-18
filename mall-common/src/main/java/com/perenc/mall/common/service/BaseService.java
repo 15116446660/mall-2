@@ -1,6 +1,7 @@
 package com.perenc.mall.common.service;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.perenc.mall.common.util.EntityUtils;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: BaseService
@@ -56,6 +58,24 @@ public class BaseService<M extends BaseMapper<T>, T> {
      */
     public T getEntityById(Integer id) {
         return mapper.selectById(id);
+    }
+
+
+    /**
+     * @description: 根据查询条件查询唯一数据
+     * @param queryWrapper
+     * @return T
+     * @throws
+     * @author: GR
+     * @date: 2019-9-13 19:26
+     *
+     * modification history:
+     * date         author      description
+     *---------------------------------------------------------*
+     * 2019-9-13       GR
+     */
+    public T getEntityOne(QueryWrapper<T> queryWrapper) {
+        return mapper.selectOne(queryWrapper);
     }
 
     /**
@@ -146,6 +166,23 @@ public class BaseService<M extends BaseMapper<T>, T> {
      */
     public void removeEntityById(Integer id) {
         mapper.deleteById(id);
+    }
+
+    /**
+     * @description: 根据条件Map删除对象
+     * @param map
+     * @return void
+     * @throws
+     * @author: GR
+     * @date: 2019-9-13 19:24
+     *
+     * modification history:
+     * date         author      description
+     *---------------------------------------------------------*
+     * 2019-9-13       GR
+     */
+    public void removeEntityByMap(Map<String, Object> map) {
+        mapper.deleteByMap(map);
     }
 
     /**

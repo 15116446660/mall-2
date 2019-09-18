@@ -27,6 +27,7 @@ import lombok.experimental.Accessors;
 public class NavMenuDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
+    private String uuid;
     private String title;
     @TableField("file_url")
     private String fileUrl;
@@ -40,10 +41,6 @@ public class NavMenuDO {
     private Integer skipType;
     @TableField("skip_content")
     private String skipContent;
-    @TableField("banner_id")
-    private String bannerId;
-    @TableField("ad_id")
-    private Integer adId;
     @TableField("create_user")
     private String createUser;
     @TableField("update_user")
@@ -52,4 +49,25 @@ public class NavMenuDO {
     private String createTime;
     @TableField("update_time")
     private String updateTime;
+    /**
+     * @description: 实际操作必须，但不存进数据库
+     * @author: GR
+     * @date: 2019/9/18 10:51
+     */
+    @TableField(exist = false)
+    private String bannerId;
+    /**
+     * @description: 实际操作必须，但不存进数据库
+     * @author: GR
+     * @date: 2019/9/18 10:51
+     */
+    @TableField(exist = false)
+    private String goodsId;
+    /**
+     * @description: 实际操作必须，但不存进数据库
+     * @author: GR
+     * @date: 2019/9/18 10:51
+     */
+    @TableField(exist = false)
+    private String adId;
 }

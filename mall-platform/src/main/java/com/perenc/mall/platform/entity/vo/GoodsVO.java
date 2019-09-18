@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 
 /**
  * @ClassName: BannerVO
- * @Description: 前端轮播图返回数据
+ * @Description: 前端商品返回数据
  *
  * @Author: GR
  * @Date: 2019/9/18 12:51 
@@ -19,15 +19,5 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-public class BannerVO {
-    private Integer id;
-    private String title;
-    private String fileUrl;
-    private Integer sort;
-    private String desc;
-    private String remark;
-    private Integer status;
-    private Integer skipType;
-    private String skipContent;
-    private String createTime;
+public class GoodsVO {
 }

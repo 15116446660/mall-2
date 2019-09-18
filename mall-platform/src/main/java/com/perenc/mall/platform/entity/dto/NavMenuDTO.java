@@ -45,10 +45,16 @@ public class NavMenuDTO {
      */
     private String bannerId;
     /**
+     * @description: 商品数组，以逗号隔开
+     * @author: GR
+     * @date: 2019/9/17 20:14
+     */
+    private String goodsId;
+    /**
      * @description: 广告ID
      * @author: GR
      * @date: 2019/9/17 20:13
      */
-    private Integer adId;
+    private String adId;
     private Integer status;
 }

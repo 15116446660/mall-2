@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * @ClassName: BannerVO
- * @Description: 前端轮播图返回数据
+ * @ClassName: AdvertiseVO
+ * @Description: 前端广告返回数据
  *
  * @Author: GR
  * @Date: 2019/9/18 12:51 
@@ -19,7 +19,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-public class BannerVO {
+public class AdvertiseVO {
     private Integer id;
     private String title;
     private String fileUrl;
@@ -27,6 +27,7 @@ public class BannerVO {
     private String desc;
     private String remark;
     private Integer status;
+    private Integer type;
     private Integer skipType;
     private String skipContent;
     private String createTime;

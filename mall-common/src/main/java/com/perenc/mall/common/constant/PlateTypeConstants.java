@@ -1,7 +1,7 @@
 package com.perenc.mall.common.constant;
 
 /**
- * @ClassName: PlateType
+ * @ClassName: PlateTypeConstants
  * @Description: 板块类型
  *
  * @Author: GR
@@ -12,7 +12,7 @@ package com.perenc.mall.common.constant;
  *---------------------------------------------------------*
  * 2019/9/16     GR     		
  */
-public class PlateType {
+public class PlateTypeConstants {
 
     /**
      * @description: 标准分类

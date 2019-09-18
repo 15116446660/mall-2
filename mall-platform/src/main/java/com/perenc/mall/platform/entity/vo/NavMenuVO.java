@@ -4,12 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 /**
- * @ClassName: BannerVO
- * @Description: 前端轮播图返回数据
+ * @ClassName: NavMenuVO
+ * @Description: 导航详情数据
  *
  * @Author: GR
- * @Date: 2019/9/18 12:51 
+ * @Date: 2019/9/18 11:45 
  *
  * Modification History:
  * Date         Author      Description
@@ -19,15 +21,18 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-public class BannerVO {
+public class NavMenuVO {
     private Integer id;
     private String title;
     private String fileUrl;
     private Integer sort;
     private String desc;
     private String remark;
-    private Integer status;
+    private Integer type;
     private Integer skipType;
     private String skipContent;
-    private String createTime;
+    private List<BannerVO> bannerList;
+    private List<GoodsVO> goodsList;
+    private AdvertiseVO ad;
+    private Integer status;
 }

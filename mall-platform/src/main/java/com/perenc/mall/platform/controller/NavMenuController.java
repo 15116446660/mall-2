@@ -9,6 +9,7 @@ import com.perenc.mall.platform.entity.dto.AdvertiseDTO;
 import com.perenc.mall.platform.entity.dto.NavMenuDTO;
 import com.perenc.mall.platform.entity.model.AdvertiseDO;
 import com.perenc.mall.platform.entity.model.NavMenuDO;
+import com.perenc.mall.platform.entity.vo.NavMenuVO;
 import com.perenc.mall.platform.service.IAdvertiseService;
 import com.perenc.mall.platform.service.INavMenuService;
 import com.perenc.mall.platform.service.impl.NavMenuServiceImpl;
@@ -76,8 +77,8 @@ public class NavMenuController {
      * @date: 2019/9/17
      */
     @RequestMapping(value = "get", method = RequestMethod.POST)
-    public NavMenuDO getBanner(@RequestParam Integer id) {
-        NavMenuDO navMenuDO = service.getNavMenu(id);
+    public NavMenuVO getNavMenu(@RequestParam Integer id) {
+        NavMenuVO navMenuDO = service.getNavMenu(id);
         if (null == navMenuDO) {
             throw new BusinessException("ID为" + id + "的广告不存在");
         }
@@ -105,7 +106,7 @@ public class NavMenuController {
      * @date: 2019/9/17
      */
     @RequestMapping(value = "del", method = RequestMethod.POST)
-    public Result removeBanner(@RequestParam Integer id) {
+    public Result removeNavMenu(@RequestParam Integer id) {
         service.removeNavMenuById(id);
         return JsonResult.buildResultOk();
     }
