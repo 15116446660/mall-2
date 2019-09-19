@@ -35,6 +35,14 @@ public class PlateDTO {
     @Min(0)
     private Integer status;
     /**
+     * @description: 板块类型
+     * 标准 0，店铺 1，商品 2，活动 3，广告 4
+     * @author: GR
+     * @date: 2019/9/18 19:05
+     */
+    @Min(0)
+    private Integer type;
+    /**
      * @description: 广告ID
      * @author: GR
      * @date: 2019/9/18 20:22
