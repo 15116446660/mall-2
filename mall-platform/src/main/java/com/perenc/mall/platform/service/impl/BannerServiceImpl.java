@@ -1,6 +1,7 @@
 package com.perenc.mall.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.platform.entity.dto.BannerDTO;
@@ -53,7 +54,7 @@ public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> imple
     public List<BannerDO> listBanners() {
         QueryWrapper<BannerDO> queryWrapper = new QueryWrapper<>();
         // 进行升序排序
-        queryWrapper.orderByAsc("sort");
+        queryWrapper.orderByAsc(CommonFiledConstants.FILED_SORT);
         List<BannerDO> listBanner = super.listEntitys(queryWrapper);
         return listBanner;
     }

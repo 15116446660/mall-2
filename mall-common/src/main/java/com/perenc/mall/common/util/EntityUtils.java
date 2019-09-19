@@ -3,6 +3,7 @@ package com.perenc.mall.common.util;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -31,12 +32,6 @@ public class EntityUtils {
         setKeyValue(entity, map);
     }
 
-    /**
-     *快速将bean的updUser、updHost、updTime附上相关值
-     *
-     *@param
-     *@return
-     */
     public <T> void setUpdatedInfo(T entity) {
         Map<String, Object> map = new HashMap<>();
         map.put("updateUser", "更新用户");

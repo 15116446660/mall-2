@@ -1,5 +1,6 @@
 package com.perenc.mall.common.util;
 
+import com.perenc.mall.common.constant.PunctuationConstants;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -91,6 +92,22 @@ public class ListUtils {
             }
         }
         return list;
+    }
+
+    /**
+     * @description: 根据符号将字符串拆分为数组
+     * @param str 字符串
+     * @param punctuation 符号
+     * @return java.util.List<java.lang.Integer>
+     * @author: GR
+     * @date: 2019/9/19
+     */
+    public static List<Integer> getIntegerListByString(String str, String punctuation) {
+        if (StringUtils.isBlank(str)) {
+            return new ArrayList<>();
+        }
+        String[] integerArray = str.split(PunctuationConstants.COMMAS);
+        return convertIntegerList(integerArray);
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package com.perenc.mall.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.platform.entity.dto.AdvertiseDTO;
@@ -47,7 +48,7 @@ public class AdvertiseServiceImpl extends BaseService<AdvertiseMapper, Advertise
     public List<AdvertiseDO> listAdvertises() {
         QueryWrapper<AdvertiseDO> queryWrapper = new QueryWrapper<>();
         // 进行升序排序
-        queryWrapper.orderByDesc("sort");
+        queryWrapper.orderByDesc(CommonFiledConstants.FILED_SORT);
         return super.listEntitys(queryWrapper);
     }
 

@@ -1,6 +1,7 @@
 package com.perenc.mall.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.constant.JumpTypeConstants;
 import com.perenc.mall.common.constant.PunctuationConstants;
 import com.perenc.mall.common.exception.BusinessException;
@@ -74,7 +75,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
         super.saveEntity(navMenuDO);
 
         QueryWrapper<NavMenuDO> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("uuid", uuid);
+        queryWrapper.eq(CommonFiledConstants.FILED_UUID, uuid);
         NavMenuDO oneNavMenuDO = super.getEntityOne(queryWrapper);
 
         // 多商品类型
@@ -152,8 +153,8 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
             log.info("获取导航菜单ID={},跳转类型为多商品5", id);
             /*** 轮播图数据查询  start ***/
             QueryWrapper<RelatedNavMenuBannerDO> relatedNavMenuBannerQueryWrapper = new QueryWrapper<>();
-            relatedNavMenuBannerQueryWrapper.eq("nav_menu_id", id);
-            relatedNavMenuBannerQueryWrapper.select("banner_id");
+            relatedNavMenuBannerQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, id);
+            relatedNavMenuBannerQueryWrapper.select(CommonFiledConstants.FILED_BANNER_ID);
             // 获取所有符合条件的轮播图id
             List<RelatedNavMenuBannerDO> relatedNavMenuBannerDOList = relatedNavMenuBannerMapper.selectList(relatedNavMenuBannerQueryWrapper);
             List<Integer> bannerDOIdList = new ArrayList<>();
@@ -162,7 +163,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
             );
             // 根据BannerId数组统一查询符合条件的数据
             QueryWrapper<BannerDO> bannerQueryWrapper = new QueryWrapper<>();
-            bannerQueryWrapper.in("id", bannerDOIdList);
+            bannerQueryWrapper.in(CommonFiledConstants.FILED_ID, bannerDOIdList);
             List<BannerDO> bannerDOList = bannerMapper.selectList(bannerQueryWrapper);
             List<BannerVO> bannerVOList = new ArrayList<>();
             bannerDOList.forEach(banerDO -> {
@@ -177,13 +178,13 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
 
             /*** 广告数据查询  start ***/
             QueryWrapper<RelatedNavMenuAdvertiseDO> relatedNavMenuAdQueryWrapper = new QueryWrapper<>();
-            relatedNavMenuAdQueryWrapper.eq("nav_menu_id", id);
+            relatedNavMenuAdQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, id);
             RelatedNavMenuAdvertiseDO relatedNavMenuAdvertiseDO = relatedNavMenuAdvertiseMapper.selectOne(relatedNavMenuAdQueryWrapper);
             // 导航栏未配置广告
             if (null != relatedNavMenuAdvertiseDO) {
                 // 根据AdId数组统一查询符合条件的数据
                 QueryWrapper<AdvertiseDO> adQueryWrapper = new QueryWrapper<>();
-                adQueryWrapper.eq("id", relatedNavMenuAdvertiseDO.getAdId());
+                adQueryWrapper.eq(CommonFiledConstants.FILED_ID, relatedNavMenuAdvertiseDO.getAdId());
                 AdvertiseDO advertiseDO = advertiseMapper.selectOne(adQueryWrapper);
                 AdvertiseVO advertiseVO = AdvertiseVO.build();
                 if (null != advertiseDO) {
@@ -200,8 +201,8 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
 
             /*** 商品数据查询  start ***/
             QueryWrapper<RelatedNavMenuGoodsDO> relatedNavMenuGoodsDOQueryWrapper = new QueryWrapper<>();
-            relatedNavMenuGoodsDOQueryWrapper.eq("nav_menu_id", id);
-            relatedNavMenuGoodsDOQueryWrapper.select("goods_id");
+            relatedNavMenuGoodsDOQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, id);
+            relatedNavMenuGoodsDOQueryWrapper.select(CommonFiledConstants.FILED_GOODS_ID);
             List<RelatedNavMenuGoodsDO> relatedNavMenuGoodsDOList = relatedNavMenuGoodsMapper.selectList(relatedNavMenuGoodsDOQueryWrapper);
             List<Integer> goodsIdList = new ArrayList<>();
             relatedNavMenuGoodsDOList.forEach(relatedNavMenuGoodsDO ->
@@ -209,7 +210,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
             );
             // 根据goodsId数组统一查询符合条件的数据
             QueryWrapper<GoodsDO> goodsQueryWrapper = new QueryWrapper<>();
-            goodsQueryWrapper.in("id", goodsIdList);
+            goodsQueryWrapper.in(CommonFiledConstants.FILED_ID, goodsIdList);
             List<GoodsDO> goodsDOList = goodsMapper.selectList(goodsQueryWrapper);
             List<GoodsVO> goodsVOList = new ArrayList<>();
             goodsDOList.forEach(goodsDO -> {
@@ -233,19 +234,19 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
             log.info("删除导航菜单ID={},跳转类型为多商品5", id);
             /*** 轮播图数据删除  start ***/
             QueryWrapper<RelatedNavMenuBannerDO> relatedNavMenuBannerQueryWrapper = new QueryWrapper<>();
-            relatedNavMenuBannerQueryWrapper.eq("nav_menu_id", id);
+            relatedNavMenuBannerQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, id);
             relatedNavMenuBannerMapper.delete(relatedNavMenuBannerQueryWrapper);
             /*** 轮播图数据删除  end ***/
 
             /*** 广告数据删除  start ***/
             QueryWrapper<RelatedNavMenuAdvertiseDO> relatedNavMenuAdQueryWrapper = new QueryWrapper<>();
-            relatedNavMenuAdQueryWrapper.eq("nav_menu_id", id);
+            relatedNavMenuAdQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, id);
             relatedNavMenuAdvertiseMapper.delete(relatedNavMenuAdQueryWrapper);
             /*** 广告数据删除  end ***/
 
             /*** 商品数据删除  start ***/
             QueryWrapper<RelatedNavMenuGoodsDO> relatedNavMenuGoodsDOQueryWrapper = new QueryWrapper<>();
-            relatedNavMenuGoodsDOQueryWrapper.eq("nav_menu_id", id);
+            relatedNavMenuGoodsDOQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, id);
             relatedNavMenuGoodsMapper.delete(relatedNavMenuGoodsDOQueryWrapper);
             /*** 商品数据删除  end ***/
         }
@@ -254,7 +255,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
 
     @Override
     public List<NavMenuDO> listNavMenus() {
-        return super.listEntitys(new QueryWrapper<NavMenuDO>().orderByAsc("sort"));
+        return super.listEntitys(new QueryWrapper<NavMenuDO>().orderByAsc(CommonFiledConstants.FILED_SORT));
     }
 
     @Override
@@ -267,7 +268,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
         }
 
         QueryWrapper<NavMenuDO> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id", navMenuDO.getId());
+        queryWrapper.eq(CommonFiledConstants.FILED_ID, navMenuDO.getId());
         NavMenuDO oneNavMenuDO = super.getEntityOne(queryWrapper);
         if (null == oneNavMenuDO) {
             throw new BusinessException("该导航菜单ID不存在");
@@ -279,7 +280,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
             String adId = navMenuDTO.getAdId();
             if (!StringUtils.isBlank(adId) && StringHelper.isNumeric(adId)) {
                 QueryWrapper<RelatedNavMenuAdvertiseDO> relatedNavMenuAdvertiseDOQueryWrapper = new QueryWrapper<>();
-                relatedNavMenuAdvertiseDOQueryWrapper.eq("nav_menu_id", navMenuDO.getId());
+                relatedNavMenuAdvertiseDOQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, navMenuDO.getId());
                 RelatedNavMenuAdvertiseDO relatedNavMenuAdvertiseDO = relatedNavMenuAdvertiseMapper.selectOne(relatedNavMenuAdvertiseDOQueryWrapper);
                 if (null == relatedNavMenuAdvertiseDO) {
                     log.info("当前导航菜单未设置任何广告，允许执行更新插入该广告ID={}信息", adId);
@@ -310,7 +311,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
 
             //查询符合条件的的轮播图数据
             QueryWrapper<RelatedNavMenuBannerDO> relatedNavMenuBannerDOQueryWrapper = new QueryWrapper<>();
-            relatedNavMenuBannerDOQueryWrapper.eq("nav_menu_id", navMenuDO.getId());
+            relatedNavMenuBannerDOQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, navMenuDO.getId());
             List<RelatedNavMenuBannerDO> relatedNavMenuBannerDOList = relatedNavMenuBannerMapper.selectList(relatedNavMenuBannerDOQueryWrapper);
             // 原有设置的轮播图ID数组
             List<Integer> oldRelatedNavMenuBannerDOIdList = new ArrayList<>();
@@ -327,8 +328,8 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
 
             for (Integer id : deleteRelatedNavMenuBannerDOIdList) {
                 QueryWrapper<RelatedNavMenuBannerDO> deleteRelatedNavMenuBannerDOQueryWrapper = new QueryWrapper<>();
-                relatedNavMenuBannerDOQueryWrapper.eq("nav_menu_id", navMenuDO.getId());
-                relatedNavMenuBannerDOQueryWrapper.eq("banner_id", id);
+                relatedNavMenuBannerDOQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, navMenuDO.getId());
+                relatedNavMenuBannerDOQueryWrapper.eq(CommonFiledConstants.FILED_BANNER_ID, id);
                 // 导航菜单-轮播图关系表
                 relatedNavMenuBannerMapper.delete(deleteRelatedNavMenuBannerDOQueryWrapper);
             }
@@ -359,7 +360,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
 
             //查询符合条件的的商品数据
             QueryWrapper<RelatedNavMenuGoodsDO> relatedNavMenuGoodsDOQueryWrapper = new QueryWrapper<>();
-            relatedNavMenuGoodsDOQueryWrapper.eq("nav_menu_id", navMenuDO.getId());
+            relatedNavMenuGoodsDOQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, navMenuDO.getId());
             List<RelatedNavMenuGoodsDO> relatedNavMenuGoodsDOList = relatedNavMenuGoodsMapper.selectList(relatedNavMenuGoodsDOQueryWrapper);
 
             // 原有设置的上商品ID数组
@@ -376,8 +377,8 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
 
             for (Integer id : deleteRelatedNavMenuGoodsDOList) {
                 QueryWrapper<RelatedNavMenuGoodsDO> deleteRelatedNavMenuGoodsDOQueryWrapper = new QueryWrapper<>();
-                deleteRelatedNavMenuGoodsDOQueryWrapper.eq("nav_menu_id", navMenuDO.getId());
-                deleteRelatedNavMenuGoodsDOQueryWrapper.eq("banner_id", id);
+                deleteRelatedNavMenuGoodsDOQueryWrapper.eq(CommonFiledConstants.FILED_NAV_MENU_ID, navMenuDO.getId());
+                deleteRelatedNavMenuGoodsDOQueryWrapper.eq(CommonFiledConstants.FILED_BANNER_ID, id);
                 // 导航菜单-商品关系表
                 relatedNavMenuGoodsMapper.delete(deleteRelatedNavMenuGoodsDOQueryWrapper);
             }
