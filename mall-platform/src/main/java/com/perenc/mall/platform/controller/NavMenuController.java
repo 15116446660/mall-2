@@ -65,7 +65,7 @@ public class NavMenuController {
      * @date: 2019/9/17
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<NavMenuDO> listAdvertises() {
+    public List<NavMenuDO> listNavMenus() {
         return service.listNavMenus();
     }
 

@@ -237,4 +237,16 @@ public class BaseService<M extends BaseMapper<T>, T> {
         EntityUtils.build().setUpdatedInfo(entity);
         mapper.updateById(entity);
     }
+
+
+    /**
+     * @description: 统计当前总数
+     * @param wrapper
+     * @return java.lang.Integer
+     * @author: GR
+     * @date: 2019/9/19       
+     */
+    public Integer count(Wrapper<T> wrapper) {
+        return mapper.selectCount(wrapper);
+    }
 }
