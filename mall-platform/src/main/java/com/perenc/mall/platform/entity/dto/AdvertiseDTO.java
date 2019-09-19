@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @ClassName: AdvertiseDTO
@@ -29,13 +30,18 @@ public class AdvertiseDTO {
     @NotBlank(message = "fileUrl不能为空")
     private String fileUrl;
     @Min(value = 0)
+    @NotNull(message = "sort不能为空")
     private Integer sort;
     @Min(value = 0)
+    @NotNull(message = "type不能为空")
     private Integer type;
     private String desc;
     @Min(value = 0)
+    @NotNull(message = "skipType不能为空")
     private Integer skipType;
     @NotBlank(message = "skipContent不能为空")
     private String skipContent;
+    @Min(0)
+    @NotNull(message = "status不能为空")
     private Integer status;
 }

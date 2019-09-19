@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.constant.PlateTypeConstants;
 import com.perenc.mall.common.constant.PunctuationConstants;
-import com.perenc.mall.common.constant.StatusConstants;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.util.EntityUtils;
@@ -75,6 +74,7 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
 
     @Override
     public void savePlate(PlateDTO plateDTO) {
+        
         PlateDO plateDO = PlateDO.build();
         BeanUtils.copyProperties(plateDTO, plateDO);
 
