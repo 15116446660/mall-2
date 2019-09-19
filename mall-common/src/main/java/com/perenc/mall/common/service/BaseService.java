@@ -148,6 +148,7 @@ public class BaseService<M extends BaseMapper<T>, T> {
     public void saveEntityBatch(List<T> list) {
         for (T t : list) {
             EntityUtils.build().setCreateInfo(t);
+            mapper.insert(t);
         }
     }
 
@@ -183,6 +184,23 @@ public class BaseService<M extends BaseMapper<T>, T> {
      */
     public void removeEntityByMap(Map<String, Object> map) {
         mapper.deleteByMap(map);
+    }
+
+    /**
+     * @description: 批量删除实体对象
+     * @param wrapper
+     * @return void
+     * @throws
+     * @author: GR
+     * @date: 2019-9-13 19:24
+     *
+     * modification history:
+     * date         author      description
+     *---------------------------------------------------------*
+     * 2019-9-13       GR
+     */
+    public void removeEntityByWrapper(Wrapper<T> wrapper) {
+        mapper.delete(wrapper);
     }
 
     /**

@@ -38,4 +38,8 @@ public class CommonFiledConstants {
     public static final String FILED_NAV_MENU_ID = "nav_menu_id";
     // 板块ID字段
     public static final String FILED_PLATE_ID = "plate_id";
+
+
+    // 父级ID字段
+    public static final String FILED_PARENT_ID = "parent_id";
 }

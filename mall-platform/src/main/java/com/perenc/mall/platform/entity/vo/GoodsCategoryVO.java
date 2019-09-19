@@ -1,8 +1,12 @@
 package com.perenc.mall.platform.entity.vo;
 
+import com.perenc.mall.common.vo.TreeNode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName: GoodsCategoryVO
@@ -20,4 +24,16 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
 public class GoodsCategoryVO {
+    private Integer id;
+    private String name;
+    private Integer parentId;
+    private String parentName;
+    private Integer sort;
+    private Integer status;
+    private String createTime;
+    List<GoodsCategoryVO> children = new ArrayList<>();
+
+    public void add(GoodsCategoryVO goodsCategoryVO) {
+        children.add(goodsCategoryVO);
+    }
 }

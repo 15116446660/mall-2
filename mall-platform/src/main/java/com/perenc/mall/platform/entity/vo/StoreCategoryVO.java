@@ -20,4 +20,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
 public class StoreCategoryVO {
+    private Integer id;
+    private String name;
+    private String createTime;
 }
