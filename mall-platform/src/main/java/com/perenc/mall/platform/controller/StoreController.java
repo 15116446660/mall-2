@@ -121,7 +121,7 @@ public class StoreController {
     @RequestMapping(value = "audit", method = RequestMethod.POST)
     public Result storeAudit(@RequestParam Integer id,
                              @RequestParam Integer status,
-                             @RequestParam String reason) {
+                             @RequestParam(required = false) String reason) {
         service.storeAudit(id, status, reason);
         return JsonResult.buildResultOk();
     }
