@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @ClassName: StoreCategoryDO
  * @Description: 前端店铺分类显示数据
@@ -22,5 +25,10 @@ import lombok.experimental.Accessors;
 public class StoreCategoryVO {
     private Integer id;
     private String name;
+    private Integer parentId;
+    private String parentName;
+    private Integer sort;
+    private Integer status;
     private String createTime;
+    List<StoreCategoryVO> children = new ArrayList<>();
 }

@@ -1,5 +1,8 @@
 package com.perenc.mall.platform.entity.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +25,22 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor(staticName = "build")
 @TableName(value = "platform_store_category")
 public class StoreCategoryDO {
+    @TableId(type = IdType.AUTO)
+    private Integer id;
+    private String name;
+    @TableField(value = "parent_id")
+    private Integer parentId;
+    @TableField(value = "`desc`")
+    private String desc;
+    private String remark;
+    private Integer sort;
+    private Integer status;
+    @TableField(value = "create_user")
+    private String createUser;
+    @TableField(value = "update_user")
+    private String updateUser;
+    @TableField(value = "create_time")
+    private String createTime;
+    @TableField(value = "update_time")
+    private String updateTime;
 }

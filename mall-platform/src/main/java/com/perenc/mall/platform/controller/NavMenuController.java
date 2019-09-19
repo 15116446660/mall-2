@@ -80,7 +80,7 @@ public class NavMenuController {
     public NavMenuVO getNavMenu(@RequestParam Integer id) {
         NavMenuVO navMenuDO = service.getNavMenu(id);
         if (null == navMenuDO) {
-            throw new BusinessException("ID为" + id + "的广告不存在");
+            throw new BusinessException("ID为" + id + "的导航菜单不存在");
         }
         return navMenuDO;
     }

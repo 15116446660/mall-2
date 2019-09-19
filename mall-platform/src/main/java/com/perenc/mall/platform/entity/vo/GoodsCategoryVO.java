@@ -1,6 +1,5 @@
 package com.perenc.mall.platform.entity.vo;
 
-import com.perenc.mall.common.vo.TreeNode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -32,8 +31,4 @@ public class GoodsCategoryVO {
     private Integer status;
     private String createTime;
     List<GoodsCategoryVO> children = new ArrayList<>();
-
-    public void add(GoodsCategoryVO goodsCategoryVO) {
-        children.add(goodsCategoryVO);
-    }
 }
