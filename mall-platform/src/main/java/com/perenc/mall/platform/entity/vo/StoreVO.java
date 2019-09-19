@@ -40,6 +40,7 @@ public class StoreVO {
     private String otherLicenseUrl;
     private String bankOtherDataUrl;
     private String remark;
+    private String reason;
     private Integer status;
     private String createTime;
     private StoreCategoryVO storeCategory;

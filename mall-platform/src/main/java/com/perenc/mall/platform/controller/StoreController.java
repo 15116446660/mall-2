@@ -65,7 +65,7 @@ public class StoreController {
                               @RequestParam(required = false) String applyPhone,
                               @RequestParam(required = false) Integer type,
                               @RequestParam(required = false) Integer status) {
-        return service.listStore(currentPage, pageSize,name,applyName,applyPhone,type,status);
+        return service.listStore(currentPage, pageSize, name, applyName, applyPhone, type, status);
     }
 
     /**
@@ -107,6 +107,22 @@ public class StoreController {
     @RequestMapping(value = "del", method = RequestMethod.POST)
     public Result removeStore(@RequestParam Integer id) {
         service.removeStoreById(id);
+        return JsonResult.buildResultOk();
+    }
+
+    /**
+     * @description: 店铺审核
+     * @param id
+     * @param reason
+     * @return com.perenc.mall.common.result.Result
+     * @author: GR
+     * @date: 2019/9/19
+     */
+    @RequestMapping(value = "audit", method = RequestMethod.POST)
+    public Result storeAudit(@RequestParam Integer id,
+                             @RequestParam Integer status,
+                             @RequestParam String reason) {
+        service.storeAudit(id, status, reason);
         return JsonResult.buildResultOk();
     }
 }

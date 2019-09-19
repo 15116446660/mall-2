@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
+import com.perenc.mall.common.constant.StoreStatusConstants;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.util.StringHelper;
@@ -133,5 +134,41 @@ public class StoreServiceImpl extends BaseService<StoreMapper, StoreDO> implemen
         BeanUtils.copyProperties(storeDTO, storeDO);
 
         super.updateEntity(storeDO);
+    }
+
+    @Override
+    public void storeAudit(Integer id, Integer status, String reason) {
+        StoreDO storeDO = super.getEntityById(id);
+        if (null == storeDO) {
+            throw new BusinessException("当前店铺信息不在存在");
+        }
+
+        // 审核失败
+        if (StoreStatusConstants.STATUS_AUDIT_FAIL == status) {
+            if (StringUtils.isBlank(reason)) {
+                throw new BusinessException("请说明审核店铺失败原因");
+            }
+            storeDO.setStatus(status).setReason(reason);
+            super.updateEntity(storeDO);
+            return;
+        }
+
+        // 店铺冻结
+        if (StoreStatusConstants.STATUS_UN_ENABLE == status) {
+            if (StringUtils.isBlank(reason)) {
+                throw new BusinessException("请说明冻结店铺原因");
+            }
+            storeDO.setStatus(status).setReason(reason);
+            super.updateEntity(storeDO);
+            return;
+        }
+
+        // 如果店铺审核通过或解冻
+        if (StoreStatusConstants.STATUS_ENABLE == status
+                || StoreStatusConstants.STATUS_AUDIT_OK == status) {
+            storeDO.setStatus(status).setReason(reason);
+            super.updateEntity(storeDO);
+            return;
+        }
     }
 }

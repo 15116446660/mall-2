@@ -69,4 +69,14 @@ public interface IStoreService {
      * @date: 2019/9/17
      */
     void updateStore(StoreDTO storeDTO);
+
+    /**
+     * @description: 审核店铺
+     * @param id
+     * @param reason 理由
+     * @return void
+     * @author: GR
+     * @date: 2019/9/19
+     */
+    void storeAudit(Integer id, Integer status, String reason);
 }

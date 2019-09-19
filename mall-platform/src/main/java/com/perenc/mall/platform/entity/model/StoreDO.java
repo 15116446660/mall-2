@@ -66,6 +66,7 @@ public class StoreDO {
     @TableField(value = "bank_other_data_url")
     private String bankOtherDataUrl;
     private String remark;
+    private String reason;
     private Integer status;
     @TableField(value = "create_user")
     private String createUser;

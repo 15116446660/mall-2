@@ -19,21 +19,21 @@ public class StoreStatusConstants {
      * @author: GR
      * @date: 2019/9/19 17:48
      */
-    public static final int STATUS_VERIFIED_OK = 0;
+    public static final int STATUS_AUDIT_OK = 0;
 
     /**
      * @description: 审核未通过
      * @author: GR
      * @date: 2019/9/19 17:48
      */
-    public static final int STATUS_VERIFIED_FAIL = 1;
+    public static final int STATUS_AUDIT_FAIL = 1;
 
     /**
      * @description: 待审核
      * @author: GR
      * @date: 2019/9/19 17:48
      */
-    public static final int STATUS__UN_VERIFIED = 2;
+    public static final int STATUS_UN_AUDIT = 2;
 
     /**
      * @description: 启用
