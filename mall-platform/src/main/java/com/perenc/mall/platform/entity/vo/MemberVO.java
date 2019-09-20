@@ -26,6 +26,7 @@ public class MemberVO {
     private String phone;
     private String wechat;
     private Double balance;
+    private Integer integral;
     private String headImg;
     private Integer sex;
     private String level;

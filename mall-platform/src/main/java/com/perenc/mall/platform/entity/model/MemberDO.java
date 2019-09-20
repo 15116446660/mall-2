@@ -32,6 +32,7 @@ public class MemberDO {
     private String phone;
     private String wechat;
     private Double balance;
+    private Integer integral;
     @TableField("head_img")
     private String headImg;
     private Integer sex;
