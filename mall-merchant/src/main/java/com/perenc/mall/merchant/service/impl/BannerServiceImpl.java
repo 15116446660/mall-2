@@ -1,13 +1,13 @@
-package com.perenc.mall.platform.service.impl;
+package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
-import com.perenc.mall.platform.entity.dto.BannerDTO;
-import com.perenc.mall.platform.entity.model.BannerDO;
-import com.perenc.mall.platform.mapper.BannerMapper;
-import com.perenc.mall.platform.service.IBannerService;
+import com.perenc.mall.merchant.entity.dto.BannerDTO;
+import com.perenc.mall.merchant.entity.model.BannerDO;
+import com.perenc.mall.merchant.mapper.BannerMapper;
+import com.perenc.mall.merchant.service.IBannerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
