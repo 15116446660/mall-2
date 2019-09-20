@@ -33,6 +33,8 @@ public class CommonFiledConstants {
     public static final String FILED_GOODS_ID = "goods_id";
     // 店铺ID字段
     public static final String FILED_STORE_ID = "store_id";
+    // 用户ID字段
+    public static final String FILED_USER_ID = "user_id";
     // 商品分类ID字段
     public static final String FILED_GOODS_CATEGORY_ID = "goods_category_id";
     // 店铺分类ID字段
@@ -49,4 +51,7 @@ public class CommonFiledConstants {
 
     // 会员级别（Int型，数字越小越靠前）
     public static final String FILED_LEVEL = "level";
+
+    // 状态
+    public static final String FILED_STATUS = "status";
 }

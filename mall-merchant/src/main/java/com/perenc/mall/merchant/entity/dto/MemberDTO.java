@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(staticName = "build")
 public class MemberDTO {
     private Integer id;
+    private Integer storeId;
     @NotBlank(message = "name不能为空")
     private String name;
     @NotBlank(message = "nickname不能为空")

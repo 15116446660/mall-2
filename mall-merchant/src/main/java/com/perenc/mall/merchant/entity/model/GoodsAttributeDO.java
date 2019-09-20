@@ -9,38 +9,34 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * @ClassName: BannerDO
- * @Description: 轮播图实体类
+ * @ClassName: GoodsCategoryDO
+ * @Description: 商品规格
  *
  * @Author: GR
- * @Date: 2019-9-13 19:59 
+ * @Date: 2019/9/18 21:44 
  *
  * Modification History:
  * Date         Author      Description
  *---------------------------------------------------------*
- * 2019-9-13     GR      		
+ * 2019/9/18     GR     		
  */
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-@TableName(value = "store_banner")
-public class BannerDO {
+@TableName(value = "store_goods_attr")
+public class GoodsAttributeDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
     @TableField("store_id")
     private Integer storeId;
-    private String title;
-    @TableField(value = "file_url")
-    private String fileUrl;
-    private Integer sort;
+    private String name;
+    @TableField(value = "parent_id")
+    private Integer parentId;
     @TableField(value = "`desc`")
     private String desc;
     private String remark;
+    private Integer sort;
     private Integer status;
-    @TableField(value = "skip_type")
-    private Integer skipType;
-    @TableField(value = "skip_content")
-    private String skipContent;
     @TableField(value = "create_user")
     private String createUser;
     @TableField(value = "update_user")

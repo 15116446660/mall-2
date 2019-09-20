@@ -27,6 +27,8 @@ import lombok.experimental.Accessors;
 public class MemberGradeDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
+    @TableField("store_id")
+    private Integer storeId;
     private String name;
     private Integer level;
     @TableField("up_level")

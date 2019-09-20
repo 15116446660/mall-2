@@ -2,6 +2,7 @@ package com.perenc.mall.common.util;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 import java.util.HashMap;
@@ -24,6 +25,9 @@ import java.util.Set;
 @NoArgsConstructor(staticName = "build")
 public class EntityUtils {
 
+    @Autowired
+    private RedisUtils redisUtils;
+
     public <T> void setCreateInfo(T entity) {
         Map<String, Object> map = new HashMap<>();
         map.put("createUser", "创建用户");
@@ -41,6 +45,10 @@ public class EntityUtils {
 
     private <T> void setKeyValue(T entity, Map<String, Object> map) {
         Assert.notNull(map, "map must not be null");
+
+        // 若为商家端，从缓存中读取当前用户所属商家ID，则注入商家ID
+//        map.put("storeId", redisUtils.get);
+
         Set<String> keys = map.keySet();
         for (String key : keys) {
             if (ReflectionUtils.hasField(entity, key)) {

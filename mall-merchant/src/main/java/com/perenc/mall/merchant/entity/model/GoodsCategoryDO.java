@@ -27,6 +27,8 @@ import lombok.experimental.Accessors;
 public class GoodsCategoryDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
+    @TableField("store_id")
+    private Integer storeId;
     private String name;
     @TableField(value = "parent_id")
     private Integer parentId;

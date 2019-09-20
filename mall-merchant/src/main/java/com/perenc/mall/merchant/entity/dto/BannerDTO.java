@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(staticName = "build")
 public class BannerDTO {
     private Integer id;
+    private Integer storeId;
     @NotBlank(message = "title不能为空")
     private String title;
     @NotBlank(message = "fileUrl不能为空")

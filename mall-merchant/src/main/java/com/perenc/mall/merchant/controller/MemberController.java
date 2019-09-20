@@ -31,6 +31,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("member")
 public class MemberController {
+
     @Autowired
     private IMemberService service;
 

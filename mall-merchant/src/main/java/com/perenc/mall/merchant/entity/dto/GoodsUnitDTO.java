@@ -4,38 +4,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 /**
- * @ClassName: GoodsCategoryDTO
- * @Description: 前端上传商品分类数据
+ * @ClassName: GoodsUnitDTO
+ * @Description: 商品单位
  *
  * @Author: GR
- * @Date: 2019/9/19 14:05 
+ * @Date: 2019/9/20 16:41 
  *
  * Modification History:
  * Date         Author      Description
  *---------------------------------------------------------*
- * 2019/9/19     GR     		
+ * 2019/9/20     GR     		
  */
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-public class GoodsCategoryDTO {
+public class GoodsUnitDTO {
     private Integer id;
     private Integer storeId;
     @NotBlank(message = "name不能为空")
     private String name;
-    @Min(0)
-    private Integer parentId;
+    @NotBlank(message = "desc不能为空")
     private String desc;
-    private String remark;
-    @Min(0)
-    @NotNull(message = "sort不能为空")
-    private Integer sort;
-    @Min(0)
-    @NotNull(message = "status不能为空")
     private Integer status;
+    private String remark;
 }

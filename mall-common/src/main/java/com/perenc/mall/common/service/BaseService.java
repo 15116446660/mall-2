@@ -238,6 +238,24 @@ public class BaseService<M extends BaseMapper<T>, T> {
         mapper.updateById(entity);
     }
 
+    /**
+     * @description: 根据条件更新实体对象
+     * @param entity
+     * @return void
+     * @throws
+     * @author: GR
+     * @date: 2019-9-13 19:23
+     *
+     * modification history:
+     * date         author      description
+     *---------------------------------------------------------*
+     * 2019-9-13       GR
+     */
+    public void updateEntity(T entity, Wrapper<T> wrapper) {
+        EntityUtils.build().setUpdatedInfo(entity);
+        mapper.update(entity, wrapper);
+    }
+
 
     /**
      * @description: 统计当前总数

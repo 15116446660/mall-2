@@ -1,6 +1,7 @@
 package com.perenc.mall.merchant.configuration;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.perenc.mall.common.util.RedisUtils;
 import com.perenc.mall.merchant.interception.UserRestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new UserRestInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(getUserRestInterceptor()).addPathPatterns("/**");
     }
 
     @Override
@@ -42,5 +43,15 @@ public class WebConfiguration implements WebMvcConfigurer {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         // paginationInterceptor.setLimit(你的最大单页限制数量，默认 500 条，小于 0 如 -1 不受限制);
         return paginationInterceptor;
+    }
+
+    @Bean
+    public UserRestInterceptor getUserRestInterceptor() {
+        return new UserRestInterceptor();
+    }
+
+    @Bean("redisUtils")
+    public RedisUtils getRedisUtils() {
+        return new RedisUtils<>();
     }
 }

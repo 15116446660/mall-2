@@ -4,12 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
+import com.perenc.mall.common.util.RedisUtils;
 import com.perenc.mall.merchant.entity.dto.BannerDTO;
 import com.perenc.mall.merchant.entity.model.BannerDO;
 import com.perenc.mall.merchant.mapper.BannerMapper;
 import com.perenc.mall.merchant.service.IBannerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,10 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor = BusinessException.class)
 public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> implements IBannerService {
+
+
+    @Autowired
+    private RedisUtils redisUtils;
 
     @Override
     public void saveBanner(BannerDTO bannerDTO) {
@@ -54,7 +60,8 @@ public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> imple
     public List<BannerDO> listBanners() {
         QueryWrapper<BannerDO> queryWrapper = new QueryWrapper<>();
         // 进行升序排序
-        queryWrapper.orderByAsc(CommonFiledConstants.FILED_SORT);
+        queryWrapper.eq(CommonFiledConstants.FILED_STORE_ID, "")
+                .orderByAsc(CommonFiledConstants.FILED_SORT);
         List<BannerDO> listBanner = super.listEntitys(queryWrapper);
         return listBanner;
     }

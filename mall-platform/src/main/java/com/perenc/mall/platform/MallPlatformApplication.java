@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication(scanBasePackages = "com.perenc.mall")
-@EnableFeignClients({"com.perenc.mall.mobile.service"})
 @MapperScan("com.perenc.mall.*.mapper")
 public class MallPlatformApplication {
 

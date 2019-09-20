@@ -25,6 +25,8 @@ import lombok.NoArgsConstructor;
 public class PlateDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
+    @TableField("store_id")
+    private Integer storeId;
     private String uuid;
     private String name;
     private String logo;
