@@ -17,6 +17,8 @@ public class CommonFiledConstants {
     public static final String FILED_ID = "id";
     // NAME字段
     public static final String FILED_NAME = "name";
+    // 手机号码字段
+    public static final String FILED_PHONE = "phone";
     // 排序字段
     public static final String FILED_SORT = "sort";
     // UUID字段
