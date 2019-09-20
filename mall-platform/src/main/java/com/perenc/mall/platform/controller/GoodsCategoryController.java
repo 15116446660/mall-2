@@ -61,7 +61,7 @@ public class GoodsCategoryController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.POST)
     public List<GoodsCategoryVO> listGoodsCategory() {
         List<GoodsCategoryVO> listGoodsCategoryDO = service.listGoodsCategory();
         return listGoodsCategoryDO;

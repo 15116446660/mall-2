@@ -60,7 +60,7 @@ public class StoreGradeController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.POST)
     public List<StoreGradeDO> listStoreGrades() {
         List<StoreGradeDO> listStoreGradeDO = service.listStoreGrade();
         return listStoreGradeDO;

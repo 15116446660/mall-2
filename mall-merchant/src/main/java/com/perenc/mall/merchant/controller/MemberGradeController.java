@@ -58,7 +58,7 @@ public class MemberGradeController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.POST)
     public List<MemberGradeVO> listMemberGrades() {
         List<MemberGradeVO> listMemberGradeVO = service.listMemberGrade();
         return listMemberGradeVO;

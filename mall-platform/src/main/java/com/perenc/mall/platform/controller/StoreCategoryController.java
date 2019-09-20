@@ -59,7 +59,7 @@ public class StoreCategoryController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.POST)
     public List<StoreCategoryVO> listStoreCategory() {
         List<StoreCategoryVO> listStoreCategoryDO = service.listStoreCategory();
         return listStoreCategoryDO;

@@ -59,7 +59,7 @@ public class BannerController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.POST)
     public List<BannerDO> listBanners() {
         List<BannerDO> listBannerDO = service.listBanners();
         return listBannerDO;
