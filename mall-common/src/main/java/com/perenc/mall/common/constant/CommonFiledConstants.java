@@ -15,6 +15,8 @@ package com.perenc.mall.common.constant;
 public class CommonFiledConstants {
     // ID字段
     public static final String FILED_ID = "id";
+    // NAME字段
+    public static final String FILED_NAME = "name";
     // 排序字段
     public static final String FILED_SORT = "sort";
     // UUID字段
@@ -42,4 +44,7 @@ public class CommonFiledConstants {
 
     // 父级ID字段
     public static final String FILED_PARENT_ID = "parent_id";
+
+    // 会员级别（Int型，数字越小越靠前）
+    public static final String FILED_LEVEL = "level";
 }

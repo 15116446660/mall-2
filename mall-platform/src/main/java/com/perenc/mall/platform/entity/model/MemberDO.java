@@ -38,11 +38,11 @@ public class MemberDO {
     private String birthday;
     private String address;
     @TableField("create_user")
-    private String create_user;
+    private String createUser;
     @TableField("update_user")
-    private String update_user;
+    private String updateUser;
     @TableField("create_time")
-    private String create_time;
+    private String createTime;
     @TableField("update_time")
-    private String update_time;
+    private String updateTime;
 }
