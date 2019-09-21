@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 
 /**
  * @ClassName: MemberDO
- * @Description: 店铺会员实体类
+ * @Description: 平台会员实体类
  *
  * @Author: GR
  * @Date: 2019-9-14 17:29 
@@ -23,18 +23,25 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-@TableName(value = "store_member")
-public class MemberDO {
+@TableName(value = "platform_member")
+public class PlatFormMemberDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    @TableField("platform_member_id")
-    private Integer platformMemberId;
     @TableField("store_id")
     private Integer storeId;
+    private String name;
     private String nickname;
+    private String phone;
+    private String wechat;
+    @TableField("head_img")
+    private String headImg;
+    private Integer sex;
     private Integer coin;
     private String level;
+    private String birthday;
+    private String address;
     private Integer status;
+    private String remark;
     @TableField("create_user")
     private String createUser;
     @TableField("update_user")

@@ -1,7 +1,9 @@
 package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.perenc.mall.common.constant.CommonConstants;
 import com.perenc.mall.common.constant.CommonFiledConstants;
+import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.merchant.entity.dto.GoodsCategoryDTO;
@@ -35,20 +37,13 @@ import java.util.ListIterator;
 @Transactional(rollbackFor = BusinessException.class)
 public class GoodsCategoryServiceImpl extends BaseService<GoodsCategoryMapper, GoodsCategoryDO> implements IGoodsCategoryService {
 
-    /**
-     * @description: 默认顶级分类parent为0
-     * @author: GR
-     * @date: 2019/9/19 14:32
-     */
-    private final int TOP_GOODS_CATEGORY = 0;
-
     @Override
     public void saveGoodsCategory(GoodsCategoryDTO goodsCategoryDTO) {
         GoodsCategoryDO goodsCategoryDO = GoodsCategoryDO.build();
         BeanUtils.copyProperties(goodsCategoryDTO, goodsCategoryDO);
         // 不设置上级分类，默认此次分类为顶级分类，默认parent为0；
         if (null == goodsCategoryDO.getParentId()) {
-            goodsCategoryDO.setParentId(TOP_GOODS_CATEGORY);
+            goodsCategoryDO.setParentId(CommonConstants.NUMBER_ZERO);
         }
         super.saveEntity(goodsCategoryDO);
     }
@@ -63,7 +58,7 @@ public class GoodsCategoryServiceImpl extends BaseService<GoodsCategoryMapper, G
         GoodsCategoryVO goodsCategoryVO = GoodsCategoryVO.build();
         BeanUtils.copyProperties(goodsCategoryDO, goodsCategoryVO);
         // 若为顶级分类，则直接返回
-        if (TOP_GOODS_CATEGORY == goodsCategoryDO.getParentId()) {
+        if (CommonConstants.NUMBER_ZERO == goodsCategoryDO.getParentId()) {
             return goodsCategoryVO;
         }
 
@@ -95,8 +90,9 @@ public class GoodsCategoryServiceImpl extends BaseService<GoodsCategoryMapper, G
     @Override
     public List<GoodsCategoryVO> listGoodsCategory() {
         // 获取所有商品分类
-        List<GoodsCategoryDO> goodsCategoryDOList = super.listEntitys(null);
-        return recursiveQuery(goodsCategoryDOList, TOP_GOODS_CATEGORY);
+        List<GoodsCategoryDO> goodsCategoryDOList = super.listEntitys(new QueryWrapper<GoodsCategoryDO>()
+                .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId()));
+        return recursiveQuery(goodsCategoryDOList, CommonConstants.NUMBER_ZERO);
     }
 
 
@@ -148,7 +144,7 @@ public class GoodsCategoryServiceImpl extends BaseService<GoodsCategoryMapper, G
         BeanUtils.copyProperties(goodsCategoryDTO, goodsCategoryDO);
         // 不设置上级分类，默认此次分类为顶级分类，默认parent为0；
         if (null == goodsCategoryDO.getParentId()) {
-            goodsCategoryDO.setParentId(TOP_GOODS_CATEGORY);
+            goodsCategoryDO.setParentId(CommonConstants.NUMBER_ZERO);
         }
         super.updateEntity(goodsCategoryDO);
     }

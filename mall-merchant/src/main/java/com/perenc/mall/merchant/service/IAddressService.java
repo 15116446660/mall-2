@@ -2,6 +2,7 @@ package com.perenc.mall.merchant.service;
 
 import com.perenc.mall.merchant.entity.dto.AddressDTO;
 import com.perenc.mall.merchant.entity.model.AddressDO;
+import com.perenc.mall.merchant.entity.vo.AddressVO;
 
 import java.util.List;
 
@@ -30,11 +31,11 @@ public interface IAddressService {
     /**
      * @description: 获取地址
      * @param id
-     * @return com.perenc.mall.platform.entity.model.AddressDO
+     * @return com.perenc.mall.platform.entity.vo.AddressVO
      * @author: GR
      * @date: 2019/9/17
      */
-    AddressDO getAddress(Integer id);
+    AddressVO getAddress(Integer id);
 
 
     /**
@@ -50,11 +51,11 @@ public interface IAddressService {
     /**
      * @description: 获取地址列表
      * @param
-     * @return java.util.List<com.perenc.mall.platform.entity.model.AddressDO>
+     * @return java.util.List<com.perenc.mall.platform.entity.vo.AddressVO>
      * @author: GR
      * @date: 2019/9/17
      */
-    List<AddressDO> listAddresss();
+    List<AddressVO> listAddress();
 
     /**
      * @description: 获取地址列表

@@ -3,6 +3,7 @@ package com.perenc.mall.merchant.service;
 
 import com.perenc.mall.merchant.entity.dto.BannerDTO;
 import com.perenc.mall.merchant.entity.model.BannerDO;
+import com.perenc.mall.merchant.entity.vo.BannerVO;
 
 import java.util.List;
 
@@ -32,11 +33,11 @@ public interface IBannerService {
     /**
      * @description: 获取轮播图
      * @param id
-     * @return com.perenc.mall.platform.entity.model.BannerDO
+     * @return com.perenc.mall.platform.entity.vo.BannerVO
      * @author: GR
      * @date: 2019/9/17       
      */
-    BannerDO getBanner(Integer id);
+    BannerVO getBanner(Integer id);
 
 
     /**
@@ -52,11 +53,11 @@ public interface IBannerService {
     /**
      * @description: 获取轮播图列表
      * @param
-     * @return java.util.List<com.perenc.mall.platform.entity.model.BannerDO>
+     * @return java.util.List<com.perenc.mall.platform.entity.vo.BannerVO>
      * @author: GR
      * @date: 2019/9/17
      */
-    List<BannerDO> listBanners();
+    List<BannerVO> listBanners();
 
     /**
      * @description: 获取轮播图列表
@@ -67,13 +68,4 @@ public interface IBannerService {
      */
     void updateBanner(BannerDTO bannerDTO);
 
-    /**
-     * @description: 更新Banner状态
-     * @param id
-     * @param status
-     * @return void
-     * @author: GR
-     * @date: 2019/9/17
-     */
-    void updateBannerStatus(Integer id, Integer status);
 }

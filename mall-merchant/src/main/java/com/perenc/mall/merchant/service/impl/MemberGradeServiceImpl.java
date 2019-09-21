@@ -2,6 +2,7 @@ package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.perenc.mall.common.constant.CommonFiledConstants;
+import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.merchant.entity.dto.MemberGradeDTO;
@@ -61,7 +62,8 @@ public class MemberGradeServiceImpl extends BaseService<MemberGradeMapper, Membe
 
     @Override
     public List<MemberGradeVO> listMemberGrade() {
-        List<MemberGradeDO> memberGradeDOList = super.listEntitys(null);
+        List<MemberGradeDO> memberGradeDOList = super.listEntitys(new QueryWrapper<MemberGradeDO>()
+                .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId()));
         List<MemberGradeVO> memberGradeVOList = new ArrayList<>();
         memberGradeDOList.forEach(memberGradeDO -> {
             MemberGradeVO memberGradeVO = MemberGradeVO.build();
@@ -75,7 +77,7 @@ public class MemberGradeServiceImpl extends BaseService<MemberGradeMapper, Membe
     public void updateMemberGrade(MemberGradeDTO memberGradeDTO) {
         MemberGradeDO memberGradeDO = MemberGradeDO.build();
         BeanUtils.copyProperties(memberGradeDTO, memberGradeDO);
-        
+
         auditNameAndLevel(memberGradeDO);
 
         super.updateEntity(memberGradeDO);
@@ -92,9 +94,12 @@ public class MemberGradeServiceImpl extends BaseService<MemberGradeMapper, Membe
     private void auditNameAndLevel(MemberGradeDO memberGradeDO) {
         // 查询当前会员等级或会员名称是否被占用
         MemberGradeDO oldMemberGradeDO = super.getEntityOne(new QueryWrapper<MemberGradeDO>()
-                .eq(CommonFiledConstants.FILED_LEVEL, memberGradeDO.getLevel())
-                .or()
-                .eq(CommonFiledConstants.FILED_NAME, memberGradeDO.getName()));
+                .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())
+                .and(queryWrapper ->
+                        queryWrapper.eq(CommonFiledConstants.FILED_LEVEL, memberGradeDO.getLevel())
+                                .or()
+                                .eq(CommonFiledConstants.FILED_NAME, memberGradeDO.getName())
+                ));
         if (null != oldMemberGradeDO && oldMemberGradeDO.getName().equals(memberGradeDO.getName())) {
             throw new BusinessException("当前会员名称已被占用，请重新设置");
         }

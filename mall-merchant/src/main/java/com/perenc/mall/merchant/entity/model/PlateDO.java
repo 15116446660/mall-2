@@ -27,7 +27,6 @@ public class PlateDO {
     private Integer id;
     @TableField("store_id")
     private Integer storeId;
-    private String uuid;
     private String name;
     private String logo;
     private Integer sort;

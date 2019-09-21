@@ -1,5 +1,6 @@
 package com.perenc.mall.merchant.interception;
 
+import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.entity.CacheUserInfo;
 import com.perenc.mall.common.util.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -39,21 +40,28 @@ public class UserRestInterceptor extends HandlerInterceptorAdapter {
 
         HttpSession session = request.getSession();
 
-//        CacheUserInfo cacheUserInfo = (CacheUserInfo) redisUtils.get(session.getId());
-//        if (null == cacheUserInfo) {
-//            log.info("用户执行登录");
-//            CacheUserInfo currUser = CacheUserInfo.build()
-//                    .setUserId(session.getId())
-//                    .setStoreId("10101010")
-//                    .setRoleId("测试");
-//            redisUtils.set(session.getId(), currUser);
-//        }
+        CacheUserInfo cacheUserInfo = (CacheUserInfo) redisUtils.get(session.getId());
+        if (null == cacheUserInfo) {
+            log.info("用户执行登录");
+            cacheUserInfo = CacheUserInfo.build()
+                    .setUserId(session.getId())
+                    .setStoreId(10101010)
+                    .setRoleId("测试");
+            redisUtils.set(session.getId(), cacheUserInfo);
+        }
+
+        //存储当前上下文相关信息
+        BaseContextHandler.setUserID(cacheUserInfo.getUserId());
+        BaseContextHandler.setStoreId(cacheUserInfo.getStoreId());
+        BaseContextHandler.setUserName(cacheUserInfo.getUserName());
 
         return super.preHandle(request, response, handler);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        // 清楚本地上下文相关信息
+        BaseContextHandler.clean();
         super.afterCompletion(request, response, handler, ex);
     }
 }

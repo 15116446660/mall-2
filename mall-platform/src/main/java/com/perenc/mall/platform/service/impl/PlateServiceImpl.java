@@ -74,26 +74,20 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
 
     @Override
     public void savePlate(PlateDTO plateDTO) {
-        
+
         PlateDO plateDO = PlateDO.build();
         BeanUtils.copyProperties(plateDTO, plateDO);
-
-        // 生成唯一ID
-        String uuid = StringHelper.generateID();
-        plateDO.setUuid(uuid);
-        // 存储navMenuDO
+        // 存储plateDO
         super.saveEntity(plateDO);
-        // 通过uuid获取存储对象的id
-        PlateDO onePlateDO = super.getEntityOne(new QueryWrapper<PlateDO>().eq(CommonFiledConstants.FILED_UUID, uuid));
 
         // 标准分类
-        if (PlateTypeConstants.NORMAL == onePlateDO.getType()) {
+        if (PlateTypeConstants.NORMAL == plateDO.getType()) {
             log.info("添加标准分类板块信息");
-            saveRelatePlateGoodsDO(plateDTO, onePlateDO);
+            saveRelatePlateGoodsDO(plateDTO, plateDO);
         }
 
         // 店铺分类
-        if (PlateTypeConstants.STORE == onePlateDO.getType()) {
+        if (PlateTypeConstants.STORE == plateDO.getType()) {
             log.info("添加店铺分类板块信息");
             if (StringUtils.isBlank(plateDTO.getStoreCategoryIds())) {
                 throw new BusinessException("请添加店铺分类ID");
@@ -102,7 +96,7 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
             List<Integer> storeCategoryIdList = ListUtils.convertIntegerList(storeCategoryIdArray);
             for (Integer id : storeCategoryIdList) {
                 RelatedPlateStoreCategoryDO relatedPlateStoreCategoryDO = RelatedPlateStoreCategoryDO.build()
-                        .setPlateId(onePlateDO.getId())
+                        .setPlateId(plateDO.getId())
                         .setStoreCategoryId(id);
                 EntityUtils.build().setCreateInfo(relatedPlateStoreCategoryDO);
                 relatedPlateStoreCategoryMapper.insert(relatedPlateStoreCategoryDO);
@@ -110,7 +104,7 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
         }
 
         // 商品分类
-        if (PlateTypeConstants.GOODS == onePlateDO.getType()) {
+        if (PlateTypeConstants.GOODS == plateDO.getType()) {
             log.info("添加商品分类板块信息");
             if (StringUtils.isBlank(plateDTO.getGoodsCategoryIds())) {
                 throw new BusinessException("请添加商品分类ID");
@@ -119,7 +113,7 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
             List<Integer> goodsCategoryIdList = ListUtils.convertIntegerList(goodsCategoryIdArray);
             for (Integer id : goodsCategoryIdList) {
                 RelatedPlateGoodsCategoryDO relatedPlateGoodsCategoryDO = RelatedPlateGoodsCategoryDO.build()
-                        .setPlateId(onePlateDO.getId())
+                        .setPlateId(plateDO.getId())
                         .setGoodsCategoryId(id);
                 EntityUtils.build().setCreateInfo(relatedPlateGoodsCategoryDO);
                 relatedPlateGoodsCategoryMapper.insert(relatedPlateGoodsCategoryDO);
@@ -127,7 +121,7 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
         }
 
         // 活动分类
-        if (PlateTypeConstants.ACTION == onePlateDO.getType()) {
+        if (PlateTypeConstants.ACTION == plateDO.getType()) {
             log.info("添加活动分类板块信息");
             String actionId = plateDTO.getActionId();
             if (StringUtils.isBlank(actionId)) {
@@ -137,16 +131,16 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
                 throw new BusinessException("请添加有效的活动ID，该ID不是一个数字");
             }
             RelatedPlateActionDO relatedPlateActionDO = RelatedPlateActionDO.build()
-                    .setPlateId(onePlateDO.getId())
+                    .setPlateId(plateDO.getId())
                     .setActionId(Integer.valueOf(plateDTO.getActionId()));
             EntityUtils.build().setCreateInfo(relatedPlateActionDO);
             relatedPlateActionMapper.insert(relatedPlateActionDO);
 
-            saveRelatePlateGoodsDO(plateDTO, onePlateDO);
+            saveRelatePlateGoodsDO(plateDTO, plateDO);
         }
 
         // 广告分类
-        if (PlateTypeConstants.ADVERTISE == onePlateDO.getType()) {
+        if (PlateTypeConstants.ADVERTISE == plateDO.getType()) {
             log.info("添加广告分类板块信息");
             String adId = plateDTO.getAdId();
             if (StringUtils.isBlank(adId)) {

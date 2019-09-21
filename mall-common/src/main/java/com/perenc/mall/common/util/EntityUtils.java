@@ -1,5 +1,6 @@
 package com.perenc.mall.common.util;
 
+import com.perenc.mall.common.context.BaseContextHandler;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class EntityUtils {
         Assert.notNull(map, "map must not be null");
 
         // 若为商家端，从缓存中读取当前用户所属商家ID，则注入商家ID
-//        map.put("storeId", redisUtils.get);
+        map.put("storeId", BaseContextHandler.getStoreId());
 
         Set<String> keys = map.keySet();
         for (String key : keys) {

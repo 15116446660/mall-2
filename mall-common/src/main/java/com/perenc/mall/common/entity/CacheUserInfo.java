@@ -45,6 +45,13 @@ public class CacheUserInfo<T> implements Serializable {
     private String userId;
 
     /**
+     * @description: 用户姓名
+     * @author: GR
+     * @date: 2019/9/20 17:29
+     */
+    private String userName;
+
+    /**
      * @description: 角色ID
      * @author: GR
      * @date: 2019/9/20 17:29
@@ -56,7 +63,7 @@ public class CacheUserInfo<T> implements Serializable {
      * @author: GR
      * @date: 2019/9/20 17:29
      */
-    private String storeId;
+    private Integer storeId;
 
     /**
      * @description: 角色ID

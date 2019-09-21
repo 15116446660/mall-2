@@ -1,5 +1,6 @@
 package com.perenc.mall.platform.interception;
 
+import com.perenc.mall.common.context.BaseContextHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -29,6 +30,8 @@ public class UserRestInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        // 清楚本地上下文相关信息
+        BaseContextHandler.clean();
         super.afterCompletion(request, response, handler, ex);
     }
 }

@@ -6,6 +6,7 @@ import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
 import com.perenc.mall.merchant.entity.dto.BannerDTO;
 import com.perenc.mall.merchant.entity.model.BannerDO;
+import com.perenc.mall.merchant.entity.vo.BannerVO;
 import com.perenc.mall.merchant.service.IBannerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,9 +61,9 @@ public class BannerController {
      * @date: 2019/9/17
      */
     @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<BannerDO> listBanners() {
-        List<BannerDO> listBannerDO = service.listBanners();
-        return listBannerDO;
+    public List<BannerVO> listBanners() {
+        List<BannerVO> listBannerBannerVO = service.listBanners();
+        return listBannerBannerVO;
     }
 
     /**
@@ -73,28 +74,13 @@ public class BannerController {
      * @date: 2019/9/17
      */
     @RequestMapping(value = "get", method = RequestMethod.POST)
-    public BannerDO getBanner(@RequestParam Integer id) {
-        BannerDO bannerDO = service.getBanner(id);
-        if (null == bannerDO) {
+    public BannerVO getBanner(Integer id) {
+        BannerVO bannerVO = service.getBanner(id);
+        if (null == bannerVO) {
             throw new BusinessException("ID为" + id + "的轮播图不存在");
         }
-        return bannerDO;
+        return bannerVO;
     }
-
-    /**
-     * @description: 更新Banner启用状态
-     * @param id
-     * @param status
-     * @return com.perenc.mall.common.result.Result
-     * @author: GR
-     * @date: 2019/9/17
-     */
-    @RequestMapping(value = "updateStatus", method = RequestMethod.POST)
-    public Result updateBannerStatus(@RequestParam Integer id, @RequestParam Integer status) {
-        service.updateBannerStatus(id, status);
-        return JsonResult.buildResultOk();
-    }
-
 
     /**
      * @description: 轮播图更新

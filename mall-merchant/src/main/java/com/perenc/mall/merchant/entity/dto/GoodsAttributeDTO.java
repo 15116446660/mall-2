@@ -27,8 +27,8 @@ public class GoodsAttributeDTO {
     @NotBlank(message = "name不能为空")
     private String name;
     private String desc;
-    @NotBlank(message = "values不能为空")
-    private String values;
+    @NotBlank(message = "attrValues不能为空")
+    private String attrValues;
     private Integer status;
     private String remark;
 }

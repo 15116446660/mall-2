@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.constant.PlateTypeConstants;
 import com.perenc.mall.common.constant.PunctuationConstants;
+import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.util.EntityUtils;
@@ -60,21 +61,13 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
         PlateDO plateDO = PlateDO.build();
         BeanUtils.copyProperties(plateDTO, plateDO);
 
-        // 生成唯一ID
-        String uuid = StringHelper.generateID();
-        plateDO.setUuid(uuid);
         // 存储navMenuDO
         super.saveEntity(plateDO);
-        // 通过uuid获取存储对象的id
-        PlateDO onePlateDO = super.getEntityOne(new QueryWrapper<PlateDO>().eq(CommonFiledConstants.FILED_UUID, uuid));
-
         // 标准分类
-        if (PlateTypeConstants.NORMAL == onePlateDO.getType()) {
+        if (PlateTypeConstants.NORMAL == plateDO.getType()) {
             log.info("添加标准分类板块信息");
-            saveRelatePlateGoodsDO(plateDTO, onePlateDO);
+            saveRelatePlateGoodsDO(plateDTO, plateDO);
         }
-
-
     }
 
     /**
@@ -176,7 +169,9 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
 
     @Override
     public List<PlateDO> listPlate() {
-        return super.listEntitys(new QueryWrapper<PlateDO>().orderByAsc(CommonFiledConstants.FILED_SORT));
+        return super.listEntitys(new QueryWrapper<PlateDO>()
+                .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())
+                .orderByAsc(CommonFiledConstants.FILED_SORT));
     }
 
     @Override

@@ -25,24 +25,15 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(staticName = "build")
 public class MemberDTO {
     private Integer id;
-    private Integer storeId;
-    @NotBlank(message = "name不能为空")
-    private String name;
     @NotBlank(message = "nickname不能为空")
     private String nickname;
     @NotBlank(message = "phone不能为空")
     private String phone;
-    private String wechat;
     @Min(0)
-    private Double balance;
-    private String headImg;
-    @Min(0)
-    @NotNull(message = "sex不能为空")
-    private Integer sex;
+    private Integer coin;
     @Min(0)
     private Integer level;
-    private String birthday;
-    private String address;
     private Integer status;
-    private String remark;
+    // 店铺会员特有属性
+    private Integer storeId;
 }

@@ -68,21 +68,14 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
     public void saveNavMenu(NavMenuDTO navMenuDTO) {
         NavMenuDO navMenuDO = NavMenuDO.build();
         BeanUtils.copyProperties(navMenuDTO, navMenuDO);
-        // 生成唯一ID
-        String uuid = StringHelper.generateID();
-        navMenuDO.setUuid(uuid);
         // 存储navMenuDO
         super.saveEntity(navMenuDO);
 
-        QueryWrapper<NavMenuDO> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(CommonFiledConstants.FILED_UUID, uuid);
-        NavMenuDO oneNavMenuDO = super.getEntityOne(queryWrapper);
-
         // 多商品类型
-        if (JumpTypeConstants.MORE_GOODS == oneNavMenuDO.getSkipType()) {
+        if (JumpTypeConstants.MORE_GOODS == navMenuDO.getSkipType()) {
             // 导航菜单-广告关系对象
             RelatedNavMenuAdvertiseDO relatedNavMenuAdvertiseDO = RelatedNavMenuAdvertiseDO.build()
-                    .setNavMenuId(oneNavMenuDO.getId());
+                    .setNavMenuId(navMenuDO.getId());
             String adId = navMenuDTO.getAdId();
             // adId不为空且必须为数字
             if (!StringUtils.isBlank(adId)) {
@@ -108,7 +101,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
                     boolean isNumber = StringHelper.isNumeric(id);
                     if (isNumber) {
                         RelatedNavMenuBannerDO relatedNavMenuBannerDO = RelatedNavMenuBannerDO.build()
-                                .setNavMenuId(oneNavMenuDO.getId())
+                                .setNavMenuId(navMenuDO.getId())
                                 .setBannerId(Integer.valueOf(id));
                         // 插入常驻字段信息
                         EntityUtils.build().setUpdatedInfo(relatedNavMenuBannerDO);
@@ -129,7 +122,7 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
                     boolean isNumber = StringHelper.isNumeric(id);
                     if (isNumber) {
                         RelatedNavMenuGoodsDO relatedNavMenuGoodsDO = RelatedNavMenuGoodsDO.build()
-                                .setNavMenuId(oneNavMenuDO.getId())
+                                .setNavMenuId(navMenuDO.getId())
                                 .setGoodsId(Integer.valueOf(id));
                         // 插入常驻字段信息
                         EntityUtils.build().setUpdatedInfo(relatedNavMenuGoodsDO);
