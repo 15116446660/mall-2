@@ -10,7 +10,10 @@ import com.perenc.mall.merchant.entity.model.GoodsUnitDO;
 import com.perenc.mall.merchant.entity.vo.GoodsUnitVO;
 import com.perenc.mall.merchant.mapper.GoodsUnitMapper;
 import com.perenc.mall.merchant.service.IGoodsUnitService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,9 @@ import java.util.List;
  *---------------------------------------------------------*
  * 2019/9/20     GR     		
  */
+@Slf4j
+@Service
+@Transactional(rollbackFor = BusinessException.class)
 public class GoodsUnitServiceImpl extends BaseService<GoodsUnitMapper, GoodsUnitDO> implements IGoodsUnitService {
     @Override
     public void saveGoodsUnit(GoodsUnitDTO goodsUnitDTO) {

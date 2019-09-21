@@ -34,7 +34,7 @@ public class MemberGradeDO {
     @TableField("up_level")
     private String upLevel;
     @TableField("card_img")
-    private String card_img;
+    private String cardImg;
     private Integer status;
     private String remark;
     @TableField("create_user")

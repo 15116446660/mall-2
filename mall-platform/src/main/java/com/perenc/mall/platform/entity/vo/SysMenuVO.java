@@ -4,28 +4,35 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * @ClassName: MemberGradeVO
- * @Description: 前端会员等级返回数据
+ * @ClassName: SysMenuVO
+ * @Description:
  *
  * @Author: GR
- * @Date: 2019/9/18 12:51 
+ * @Date: 2019/9/21 15:24 
  *
  * Modification History:
  * Date         Author      Description
  *---------------------------------------------------------*
- * 2019/9/18     GR     		
+ * 2019/9/21     GR     		
  */
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-public class MemberGradeVO {
+public class SysMenuVO {
     private Integer id;
     private String name;
-    private Integer level;
-    private String upLevel;
-    private String cardImg;
+    private Integer parentId;
+    private String parentName;
+    private Integer sort;
     private Integer status;
-    private String remark;
     private String createTime;
+    List<SysMenuVO> children = new ArrayList<>();
+
+    public void add(SysMenuVO sysMenuVO) {
+        this.children.add(sysMenuVO);
+    }
 }

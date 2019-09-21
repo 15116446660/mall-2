@@ -8,41 +8,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.Min;
-
 /**
- * @ClassName: MemberGradeDO
- * @Description: 会员等级实体类
+ * @ClassName: SysMenuDO
+ * @Description:
  *
  * @Author: GR
- * @Date: 2019-9-14 17:43 
+ * @Date: 2019/9/21 15:22 
  *
  * Modification History:
  * Date         Author      Description
  *---------------------------------------------------------*
- * 2019-9-14     GR      		
+ * 2019/9/21     GR     		
  */
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-@TableName(value = "platform_member_grade")
-public class MemberGradeDO {
+@TableName(value = "sys_menu")
+public class SysMenuDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
+    @TableField(value = "parent_id")
+    private Integer parentId;
     private String name;
-    private Integer level;
-    @TableField("up_level")
-    private String upLevel;
-    @TableField("card_img")
-    private String cardImg;
+    private Integer sort;
     private Integer status;
-    private String remark;
-    @TableField("create_user")
+    @TableField(value = "create_user")
     private String createUser;
-    @TableField("update_user")
+    @TableField(value = "update_user")
     private String updateUser;
-    @TableField("create_time")
+    @TableField(value = "create_time")
     private String createTime;
-    @TableField("update_time")
+    @TableField(value = "update_time")
     private String updateTime;
 }

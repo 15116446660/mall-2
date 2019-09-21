@@ -11,7 +11,10 @@ import com.perenc.mall.merchant.entity.model.AddressDO;
 import com.perenc.mall.merchant.entity.vo.AddressVO;
 import com.perenc.mall.merchant.mapper.AddressMapper;
 import com.perenc.mall.merchant.service.IAddressService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,9 @@ import java.util.List;
  *---------------------------------------------------------*
  * 2019/9/20     GR     		
  */
+@Slf4j
+@Service
+@Transactional(rollbackFor = BusinessException.class)
 public class AddressServiceImpl extends BaseService<AddressMapper, AddressDO> implements IAddressService {
     @Override
     public void saveAddress(AddressDTO addressDTO) {

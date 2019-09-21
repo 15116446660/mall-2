@@ -12,7 +12,10 @@ import com.perenc.mall.merchant.entity.model.GoodsAttributeDO;
 import com.perenc.mall.merchant.entity.vo.GoodsAttributeVO;
 import com.perenc.mall.merchant.mapper.GoodsAttributeMapper;
 import com.perenc.mall.merchant.service.IGoodsAttributeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,9 @@ import java.util.List;
  *---------------------------------------------------------*
  * 2019/9/20     GR     		
  */
+@Slf4j
+@Service
+@Transactional(rollbackFor = BusinessException.class)
 public class GoodsAttributeServiceImpl extends BaseService<GoodsAttributeMapper, GoodsAttributeDO> implements IGoodsAttributeService {
     @Override
     public void saveGoodsAttribute(GoodsAttributeDTO goodsAttributeDTO) {

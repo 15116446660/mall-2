@@ -1,5 +1,6 @@
 package com.perenc.mall.merchant.interception;
 
+import com.perenc.mall.common.constant.ContextConstants;
 import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.entity.CacheUserInfo;
 import com.perenc.mall.common.util.RedisUtils;

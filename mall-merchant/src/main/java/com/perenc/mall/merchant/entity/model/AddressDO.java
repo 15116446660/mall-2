@@ -27,7 +27,7 @@ import lombok.experimental.Accessors;
 public class AddressDO {
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private Integer user_id;
+    private Integer userId;
     private String name;
     private String province;
     private String city;

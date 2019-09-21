@@ -24,7 +24,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor(staticName = "build")
 public class AddressDTO {
     private Integer id;
-    private Integer user_id;
+    private Integer userId;
     @NotBlank(message = "name不能为空")
     private String name;
     private String province;

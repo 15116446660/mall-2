@@ -75,6 +75,16 @@ public class BaseContextHandler {
         return getObjectValue(value);
     }
 
+    public static String getApplicationType() {
+        Object value = get(ContextConstants.CONTEXT_KEY_Application_TYPE);
+        return getObjectValue(value);
+    }
+
+    public static void setApplicationType(Object applicationType) {
+        set(ContextConstants.CONTEXT_KEY_ROLE_ID, applicationType);
+    }
+
+
     public static void setRoleId(Object roleId) {
         set(ContextConstants.CONTEXT_KEY_ROLE_ID, roleId);
     }

@@ -1,33 +1,31 @@
-package com.perenc.mall.merchant.entity.vo;
+package com.perenc.mall.platform.entity.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.sql.Date;
+import javax.validation.constraints.NotBlank;
 
 /**
- * @ClassName: MemberGradeVO
- * @Description: 前端会员等级返回数据
+ * @ClassName: SysMenuDTO
+ * @Description: 系统菜单上传数据
  *
  * @Author: GR
- * @Date: 2019/9/18 12:51 
+ * @Date: 2019/9/21 15:20 
  *
  * Modification History:
  * Date         Author      Description
  *---------------------------------------------------------*
- * 2019/9/18     GR     		
+ * 2019/9/21     GR     		
  */
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-public class MemberGradeVO {
+public class SysMenuDTO {
     private Integer id;
+    private Integer parentId;
+    @NotBlank(message = "name不能为空")
     private String name;
-    private Integer level;
-    private String upLevel;
-    private String cardImg;
+    private Integer sort;
     private Integer status;
-    private String remark;
-    private String createTime;
 }
