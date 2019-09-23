@@ -23,6 +23,8 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor(staticName = "build")
 @TableName(value = "store_plate_goods")
 public class RelatedPlateGoodsDO {
+    @TableField("store_id")
+    private Integer storeId;
     @TableField("plate_id")
     private Integer plateId;
     @TableField("goods_id")

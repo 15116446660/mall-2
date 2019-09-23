@@ -183,11 +183,12 @@ public class RoleServiceImpl extends BaseService<RoleMapper, RoleDO> implements 
         // 过滤要新增插入的菜单ID
         Set<Integer> insertMenuIdList = ListUtils.getNotExistBySource(oldMenuIdList, newMenuIdList);
         // 根据menuId与RoleId删除指定数据
-        if (deleteMenuIdList.size()> 0){
+        if (deleteMenuIdList.size() > 0) {
             relatedRoleMennuMapper.delete(new QueryWrapper<RelatedRoleMenuDO>()
                     .eq(CommonFiledConstants.FILED_ROLE_ID, roleDO.getId())
                     .in(CommonFiledConstants.FILED_MENU_ID, deleteMenuIdList));
         }
+
         // 遍历插入
         insertMenuIdList.forEach(menuId -> {
             RelatedRoleMenuDO relatedRoleMenuDO = RelatedRoleMenuDO.build()
@@ -197,6 +198,7 @@ public class RoleServiceImpl extends BaseService<RoleMapper, RoleDO> implements 
             relatedRoleMennuMapper.insert(relatedRoleMenuDO);
         });
 
+        super.updateEntity(roleDO);
     }
 
 }

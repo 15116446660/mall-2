@@ -58,7 +58,7 @@ public class UserServiceImpl extends BaseService<UserMapper, UserDO> implements 
         BeanUtils.copyProperties(userDTO, userDO);
         userDO.setPassword(Md5Utils.md5(userDTO.getPassword()));
 
-        saveEntity(userDO);
+        super.saveEntity(userDO);
 
     }
 

@@ -4,12 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 /**
- * @ClassName: UserVO
- * @Description: 用户展示信息
+ * @ClassName: ActionMoneyOffVO
+ * @Description: 活动——满减
  *
  * @Author: GR
- * @Date: 2019/9/23 13:36 
+ * @Date: 2019/9/23 15:18 
  *
  * Modification History:
  * Date         Author      Description
@@ -19,20 +21,16 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-public class UserVO {
+public class ActionMoneyOffVO {
     private Integer id;
-    private Integer storeId;
-    private Integer roleId;
-    private String role;
-    private String account;
-    private String password;
-    private String headImg;
-    private Integer sex;
-    private String phone;
-    private String email;
-    private String birthday;
-    private String address;
+    private String name;
+    private String startTime;
+    private String endTime;
+    private String conditionMoney;
+    private String minusMoney;
+    private Integer total;
     private Integer status;
     private String remark;
+    private String goodsType;
     private String createTime;
 }

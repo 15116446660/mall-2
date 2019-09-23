@@ -7,35 +7,34 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * @ClassName: GoodsUnitDO
- * @Description: 商品单位实体类
+ * @ClassName: RelatedActionMoneyOffGoodsDO
+ * @Description:
  *
  * @Author: GR
- * @Date: 2019/9/20 16:44 
+ * @Date: 2019/9/23 16:05 
  *
  * Modification History:
  * Date         Author      Description
  *---------------------------------------------------------*
- * 2019/9/20     GR     		
+ * 2019/9/23     GR     		
  */
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor(staticName = "build")
-@TableName(value = "store_goods_unit")
-public class GoodsUnitDO {
-    private Integer id;
+@TableName(value = "store_action_money_off_goods")
+public class RelatedActionMoneyOffGoodsDO {
     @TableField("store_id")
     private Integer storeId;
-    private String name;
-    private String desc;
-    private Integer status;
-    private String remark;
-    @TableField(value = "create_user")
+    @TableField("action_money_off_id")
+    private Integer actionMoneyOffId;
+    @TableField("goods_id")
+    private Integer goodsId;
+    @TableField("create_user")
     private String createUser;
-    @TableField(value = "update_user")
+    @TableField("update_user")
     private String updateUser;
-    @TableField(value = "create_time")
+    @TableField("create_time")
     private String createTime;
-    @TableField(value = "update_time")
+    @TableField("update_time")
     private String updateTime;
 }

@@ -29,8 +29,9 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("memberGrade")
+@RequestMapping("memberLevel")
 public class MemberGradeController {
+
     @Autowired
     private IMemberGradeService service;
 

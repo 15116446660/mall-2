@@ -24,7 +24,8 @@ import lombok.experimental.Accessors;
 @TableName(value = "store_goods_brand")
 public class GoodsBrandDO {
     private Integer id;
-    private Integer store_id;
+    @TableField("store_id")
+    private Integer storeId;
     private String name;
     private String desc;
     private Integer status;

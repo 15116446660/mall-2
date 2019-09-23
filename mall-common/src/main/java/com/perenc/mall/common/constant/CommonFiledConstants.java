@@ -33,6 +33,8 @@ public class CommonFiledConstants {
     public static final String FILED_AD_ID = "ad_id";
     // 活动ID字段
     public static final String FILED_ACTION_ID = "action_id";
+    // 活动满减ID字段
+    public static final String FILED_ACTION_MONEY_OFF_ID = "action_money_off_id";
     // 商品ID字段
     public static final String FILED_GOODS_ID = "goods_id";
     // 店铺ID字段
