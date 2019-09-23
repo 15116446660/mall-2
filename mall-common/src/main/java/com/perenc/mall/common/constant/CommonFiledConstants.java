@@ -33,6 +33,10 @@ public class CommonFiledConstants {
     public static final String FILED_GOODS_ID = "goods_id";
     // 店铺ID字段
     public static final String FILED_STORE_ID = "store_id";
+    // 角色ID字段
+    public static final String FILED_ROLE_ID = "role_id";
+    // 菜单ID字段
+    public static final String FILED_MENU_ID = "menu_id";
     // 用户ID字段
     public static final String FILED_USER_ID = "user_id";
     // 商品分类ID字段

@@ -13,12 +13,16 @@ import com.perenc.mall.merchant.entity.vo.GoodsAttributeVO;
 import com.perenc.mall.merchant.mapper.GoodsAttributeMapper;
 import com.perenc.mall.merchant.service.IGoodsAttributeService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName: GoodsAttributeServiceImpl
@@ -40,13 +44,22 @@ public class GoodsAttributeServiceImpl extends BaseService<GoodsAttributeMapper,
     public void saveGoodsAttribute(GoodsAttributeDTO goodsAttributeDTO) {
         GoodsAttributeDO superGoodsAttributeDO = GoodsAttributeDO.build();
         BeanUtils.copyProperties(goodsAttributeDTO, superGoodsAttributeDO);
-
-
+        // 商品规格名称是否被占用
+        if (!StringUtils.isBlank(superGoodsAttributeDO.getName())) {
+            GoodsAttributeDO goodsAttributeDO = super.getEntityOne(new QueryWrapper<GoodsAttributeDO>()
+                    .eq(CommonFiledConstants.FILED_NAME, superGoodsAttributeDO.getName()));
+            if (null != goodsAttributeDO) {
+                throw new BusinessException("商品规格名称已存在，请重新输入");
+            }
+        }
 
         // 保存实体对象时会将当前对象ID返回给原对象
         super.saveEntity(superGoodsAttributeDO);
         // 获取下级规格值名称
         String[] subAddrArray = goodsAttributeDTO.getAttrValues().split(PunctuationConstants.COMMAS);
+        // 去重
+        subAddrArray = filterRepeat(subAddrArray);
+
         // 分别存储每一个二级规格值，且设置下级规格值的上级规格值ID
         for (String subAttr : subAddrArray) {
             GoodsAttributeDO subGoodsAttributeDO = GoodsAttributeDO.build()
@@ -133,6 +146,9 @@ public class GoodsAttributeServiceImpl extends BaseService<GoodsAttributeMapper,
 
         // 获取新的下级规格值名称
         String[] newSubAddrArray = goodsAttributeDTO.getAttrValues().split(PunctuationConstants.COMMAS);
+        // 去重
+        String[] addrArray = filterRepeat(newSubAddrArray);
+
         // 所有子规格
         List<GoodsAttributeDO> subGoodsAttributeDOList = super.listEntitys(new QueryWrapper<GoodsAttributeDO>()
                 .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())
@@ -141,7 +157,7 @@ public class GoodsAttributeServiceImpl extends BaseService<GoodsAttributeMapper,
         // 要删除的子规格ID列表
         List<Integer> deleteSubAddrList = new ArrayList<>();
         subGoodsAttributeDOList.forEach(subGoodsAttributeDO -> {
-            for (String subAttr : newSubAddrArray) {
+            for (String subAttr : addrArray) {
                 if (!subGoodsAttributeDO.getName().equals(subAttr)) {
                     deleteSubAddrList.add(subGoodsAttributeDO.getId());
                 }
@@ -150,20 +166,29 @@ public class GoodsAttributeServiceImpl extends BaseService<GoodsAttributeMapper,
         // 移除所有子规格
         super.removeEntityBatchByIds(deleteSubAddrList);
         // 过滤已存在的，插入新的规格
-        for (String subAttr : newSubAddrArray) {
+        for (String subAttr : addrArray) {
             subGoodsAttributeDOList.forEach(subGoodsAttributeDO -> {
-                if (subAttr.equals(subGoodsAttributeDO.getName())) {
+                // 若当前不存在该规格，则插入
+                if (!subAttr.equals(subGoodsAttributeDO.getName())) {
                     GoodsAttributeDO goodsAttributeDO = GoodsAttributeDO.build()
                             .setName(subAttr)
                             .setParentId(subGoodsAttributeDO.getId());
-                    super.saveEntity(subGoodsAttributeDO);
+                    super.saveEntity(goodsAttributeDO);
                 }
             });
         }
+    }
 
-        // 分别存储每一个二级规格值，且设置下级规格值的上级规格值ID
-        for (String subAttr : newSubAddrArray) {
-
-        }
+    /**
+     * @description: 去重
+     * @param strArray
+     * @return java.lang.String[]
+     * @author: GR
+     * @date: 2019/9/23       
+     */
+    private String[] filterRepeat(String[] strArray) {
+        List<String> strList = Arrays.asList(strArray);
+        strList = strList.stream().distinct().collect(Collectors.toList());
+        return (String[]) strList.toArray();
     }
 }
