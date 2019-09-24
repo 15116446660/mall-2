@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @ClassName: StoreDTO
@@ -31,6 +32,7 @@ public class StoreDTO {
     private String name;
     private String logo;
     @Min(0)
+    @NotNull(message = "type不能为空")
     private Integer type;
     @NotBlank(message = "province不能为空")
     private String province;
@@ -38,23 +40,23 @@ public class StoreDTO {
     private String city;
     private String area;
     private String address;
-    @NotBlank(message = "申请人不能为空")
+    @NotBlank(message = "applyUser不能为空")
     private String applyUser;
     private String applyEmail;
-    @NotBlank(message = "联系人不能为空")
+    @NotBlank(message = "contactUser不能为空")
     private String contactUser;
-    @NotBlank(message = "联系人电话不能为空")
+    @NotBlank(message = "contactPhone电话不能为空")
     private String contactPhone;
     private String corporateUser;
-    @NotBlank(message = "法人电话不能为空")
+    @NotBlank(message = "corporatePhone不能为空")
     private String corporatePhone;
-    @NotBlank(message = "法人身份证不能为空")
+    @NotBlank(message = "corporateIdCard不能为空")
     private String corporateIdCard;
-    @NotBlank(message = "开户行不能为空")
+    @NotBlank(message = "bank不能为空")
     private String bank;
-    @NotBlank(message = "银行卡卡号不能为空")
+    @NotBlank(message = "bankCardNumber不能为空")
     private String bankCardNumber;
-    @NotBlank(message = "营业执照不能为空")
+    @NotBlank(message = "businessLicenseUrl不能为空")
     private String businessLicenseUrl;
     private String otherLicenseUrl;
     private String bankOtherDataUrl;

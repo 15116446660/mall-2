@@ -13,7 +13,7 @@ package com.perenc.mall.common.constant;
  * 2019/9/20     GR     		
  */
 public class ContextConstants {
-    public static final String CONTEXT_KEY_Application_TYPE = "key_application_type";
+    public static final String CONTEXT_KEY_APPLICATION_TYPE = "key_application_type";
     public static final String CONTEXT_KEY_ROLE_ID = "key_role_id";
     public static final String CONTEXT_KEY_ROLE_TYPE = "key_role_type";
     public static final String CONTEXT_KEY_USER_ID = "key_user_id";

@@ -76,7 +76,7 @@ public class BaseContextHandler {
     }
 
     public static String getApplicationType() {
-        Object value = get(ContextConstants.CONTEXT_KEY_Application_TYPE);
+        Object value = get(ContextConstants.CONTEXT_KEY_APPLICATION_TYPE);
         return getObjectValue(value);
     }
 
