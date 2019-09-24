@@ -77,7 +77,7 @@ public class ActionController {
      * @author: GR
      * @date: 2019/9/23
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
+    @RequestMapping(value = "page", method = RequestMethod.POST)
     public PageVO listActionMoneyOffs(int currentPage,
                                       int pageSize,
                                       @RequestParam(required = false) Integer type) {
@@ -99,7 +99,7 @@ public class ActionController {
      * @author: GR
      * @date: 2019/9/23
      */
-    @RequestMapping(value = "/actionGoods/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/actionGoods/page", method = RequestMethod.POST)
     public PageVO listActionGoods(int actionId,
                                   int currentPage,
                                   int pageSize,

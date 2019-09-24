@@ -1,6 +1,7 @@
 package com.perenc.mall.merchant.service;
 
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.BannerDTO;
 import com.perenc.mall.merchant.entity.model.BannerDO;
 import com.perenc.mall.merchant.entity.vo.BannerVO;
@@ -57,7 +58,7 @@ public interface IBannerService {
      * @author: GR
      * @date: 2019/9/17
      */
-    List<BannerVO> listBanners();
+    PageVO<BannerVO> listBanners(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 获取轮播图列表

@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.AddressDTO;
 import com.perenc.mall.merchant.entity.vo.AddressVO;
 import com.perenc.mall.merchant.service.IAddressService;
@@ -58,10 +59,10 @@ public class AddressController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<AddressVO> listAddresss() {
-        List<AddressVO> listAddressVO = service.listAddress();
-        return listAddressVO;
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<AddressVO> listAddresss(Integer currentPage, Integer pageSize) {
+        PageVO<AddressVO> pageVO = service.listAddress(currentPage, pageSize);
+        return pageVO;
     }
 
     /**

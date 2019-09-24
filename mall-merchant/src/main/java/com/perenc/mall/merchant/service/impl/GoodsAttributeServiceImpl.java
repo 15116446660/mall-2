@@ -7,6 +7,7 @@ import com.perenc.mall.common.constant.PunctuationConstants;
 import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.GoodsAttributeDTO;
 import com.perenc.mall.merchant.entity.model.GoodsAttributeDO;
 import com.perenc.mall.merchant.entity.vo.GoodsAttributeVO;

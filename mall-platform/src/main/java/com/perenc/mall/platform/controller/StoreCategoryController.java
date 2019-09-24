@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.StoreCategoryDTO;
 import com.perenc.mall.platform.entity.vo.StoreCategoryVO;
 import com.perenc.mall.platform.service.IStoreCategoryService;
@@ -59,10 +60,10 @@ public class StoreCategoryController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<StoreCategoryVO> listStoreCategory() {
-        List<StoreCategoryVO> listStoreCategoryDO = service.listStoreCategory();
-        return listStoreCategoryDO;
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<StoreCategoryVO> listStoreCategory(Integer currentPage, Integer pageSize) {
+        PageVO<StoreCategoryVO> pageVO = service.listStoreCategory(currentPage,pageSize);
+        return pageVO;
     }
 
     /**

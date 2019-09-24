@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.GoodsAttributeDTO;
 import com.perenc.mall.merchant.entity.vo.GoodsAttributeVO;
 import com.perenc.mall.merchant.service.IGoodsAttributeService;
@@ -60,8 +61,8 @@ public class GoodsAttributeController {
      */
     @RequestMapping(value = "list", method = RequestMethod.POST)
     public List<GoodsAttributeVO> listGoodsAttributes() {
-        List<GoodsAttributeVO> listGoodsAttributeVO = service.listGoodsAttributes();
-        return listGoodsAttributeVO;
+        List<GoodsAttributeVO> goodsAttributeVOList = service.listGoodsAttributes();
+        return goodsAttributeVOList;
     }
 
     /**

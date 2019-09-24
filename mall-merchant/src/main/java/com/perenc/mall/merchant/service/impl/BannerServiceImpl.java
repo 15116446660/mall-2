@@ -1,11 +1,14 @@
 package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.util.RedisUtils;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.BannerDTO;
 import com.perenc.mall.merchant.entity.model.BannerDO;
 import com.perenc.mall.merchant.entity.vo.BannerVO;
@@ -62,21 +65,24 @@ public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> imple
 
 
     @Override
-    public List<BannerVO> listBanners() {
-        QueryWrapper<BannerDO> queryWrapper = new QueryWrapper<>();
-        // 进行升序排序
-        queryWrapper.eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())
-                .orderByAsc(CommonFiledConstants.FILED_SORT);
-        List<BannerDO> bannerDOList = super.listEntitys(queryWrapper);
-
-        List<BannerVO> addressVOList = new ArrayList<>();
+    public PageVO<BannerVO> listBanners(Integer currentPage, Integer pageSize) {
+        IPage<BannerDO> iPage = super.listEntitysByPage(new Page<BannerDO>(currentPage, pageSize), new QueryWrapper<BannerDO>()
+                .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())
+                .orderByAsc(CommonFiledConstants.FILED_SORT));
+        List<BannerDO> bannerDOList = iPage.getRecords();
+        List<BannerVO> bannerVOList = new ArrayList<>();
         bannerDOList.forEach(bannerDO -> {
             BannerVO bannerVO = BannerVO.build();
             BeanUtils.copyProperties(bannerDO, bannerVO);
-            addressVOList.add(bannerVO);
+            bannerVOList.add(bannerVO);
         });
 
-        return addressVOList;
+        return PageVO.<BannerVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(bannerVOList)
+                .setTotal(super.count(new QueryWrapper<BannerDO>()
+                        .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())));
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.UserDTO;
 import com.perenc.mall.merchant.entity.vo.UserVO;
 import com.perenc.mall.merchant.service.IUserService;
@@ -59,10 +60,10 @@ public class UserController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<UserVO> listUsers() {
-        List<UserVO> listUserVO = service.listUsers();
-        return listUserVO;
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<UserVO> listUsers(Integer currentPage, Integer pageSize) {
+        PageVO<UserVO> pageVO = service.listUsers(currentPage,pageSize);
+        return pageVO;
     }
 
     /**

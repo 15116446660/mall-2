@@ -1,11 +1,14 @@
 package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.util.Md5Utils;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.UserDTO;
 import com.perenc.mall.merchant.entity.model.RoleDO;
 import com.perenc.mall.merchant.entity.model.UserDO;
@@ -90,16 +93,23 @@ public class UserServiceImpl extends BaseService<UserMapper, UserDO> implements 
     }
 
     @Override
-    public List<UserVO> listUsers() {
-        List<UserDO> userDOList = super.listEntitys(new QueryWrapper<UserDO>()
+    public PageVO<UserVO> listUsers(Integer currentPage, Integer pageSize) {
+        IPage<UserDO> iPage = super.listEntitysByPage(new Page<UserDO>(currentPage, pageSize), new QueryWrapper<UserDO>()
                 .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId()));
+        List<UserDO> userDOList = iPage.getRecords();
         List<UserVO> userVOList = new ArrayList<>();
         userDOList.forEach(userDO -> {
             UserVO userVO = UserVO.build();
             BeanUtils.copyProperties(userDO, userVO);
             userVOList.add(userVO);
         });
-        return userVOList;
+
+        return PageVO.<UserVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(userVOList)
+                .setTotal(super.count(new QueryWrapper<UserDO>()
+                        .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())));
     }
 
     @Override

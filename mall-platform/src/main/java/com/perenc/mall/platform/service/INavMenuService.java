@@ -1,5 +1,6 @@
 package com.perenc.mall.platform.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.BannerDTO;
 import com.perenc.mall.platform.entity.dto.NavMenuDTO;
 import com.perenc.mall.platform.entity.model.BannerDO;
@@ -54,11 +55,11 @@ public interface INavMenuService {
     /**
      * @description: 获取导航菜单列表
      * @param
-     * @return java.util.List<com.perenc.mall.platform.entity.model.NavMenuDO>
+     * @return java.util.List<com.perenc.mall.platform.entity.vo.NavMenuVO>
      * @author: GR
      * @date: 2019/9/17
      */
-    List<NavMenuDO> listNavMenus();
+    PageVO<NavMenuVO> listNavMenus(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 更新导航菜单

@@ -5,6 +5,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.AdvertiseDTO;
 import com.perenc.mall.platform.entity.dto.NavMenuDTO;
 import com.perenc.mall.platform.entity.model.AdvertiseDO;
@@ -64,9 +65,9 @@ public class NavMenuController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<NavMenuDO> listNavMenus() {
-        return service.listNavMenus();
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<NavMenuDO> listNavMenus(Integer currentPage, Integer pageSize) {
+        return service.listNavMenus(currentPage, pageSize);
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.perenc.mall.merchant.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.GoodsAttributeDTO;
 import com.perenc.mall.merchant.entity.model.GoodsAttributeDO;
 import com.perenc.mall.merchant.entity.vo.GoodsAttributeVO;

@@ -1,10 +1,13 @@
 package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.GoodsUnitDTO;
 import com.perenc.mall.merchant.entity.model.GoodsUnitDO;
 import com.perenc.mall.merchant.entity.vo.GoodsUnitVO;
@@ -64,16 +67,23 @@ public class GoodsUnitServiceImpl extends BaseService<GoodsUnitMapper, GoodsUnit
     }
 
     @Override
-    public List<GoodsUnitVO> listGoodsUnits() {
-        List<GoodsUnitDO> goodsUnitDOList = super.listEntitys(new QueryWrapper<GoodsUnitDO>()
+    public PageVO<GoodsUnitVO> listGoodsUnits(Integer currentPage, Integer pageSize) {
+
+        IPage<GoodsUnitDO> iPage = super.listEntitysByPage(new Page<GoodsUnitDO>(currentPage, pageSize), new QueryWrapper<GoodsUnitDO>()
                 .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId()));
+
+        List<GoodsUnitDO> goodsUnitDOList = iPage.getRecords();
         List<GoodsUnitVO> goodsUnitVOList = new ArrayList<>();
         goodsUnitDOList.forEach(goodsUnitDO -> {
             GoodsUnitVO goodsUnitVO = GoodsUnitVO.build();
             BeanUtils.copyProperties(goodsUnitDO, goodsUnitVO);
             goodsUnitVOList.add(goodsUnitVO);
         });
-        return goodsUnitVOList;
+        return PageVO.<GoodsUnitVO>build().setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(goodsUnitVOList)
+                .setTotal(super.count(new QueryWrapper<GoodsUnitDO>()
+                        .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())));
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.perenc.mall.platform.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.AdvertiseDTO;
 import com.perenc.mall.platform.entity.model.AdvertiseDO;
+import com.perenc.mall.platform.entity.vo.AdvertiseVO;
 
 import java.util.List;
 
@@ -40,11 +42,11 @@ public interface IAdvertiseService {
     /**
      * @description: 广告列表
      * @param
-     * @return java.util.List<com.perenc.mall.platform.entity.model.AdvertiseDO>
+     * @return java.util.List<com.perenc.mall.platform.entity.vo.AdvertiseVO>
      * @author: GR
      * @date: 2019/9/17       
      */
-    List<AdvertiseDO> listAdvertises();
+    PageVO<AdvertiseVO> listAdvertises(Integer currentPage, Integer pageSize);
 
 
     /**

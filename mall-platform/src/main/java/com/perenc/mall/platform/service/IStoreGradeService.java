@@ -56,7 +56,7 @@ public interface IStoreGradeService {
      * @author: GR
      * @date: 2019/9/19
      */
-    List<StoreGradeDO> listStoreGrade();
+    PageVO<StoreGradeVO> listStoreGrade(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 更新店铺等级信息

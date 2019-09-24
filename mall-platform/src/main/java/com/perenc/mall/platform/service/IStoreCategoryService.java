@@ -1,5 +1,6 @@
 package com.perenc.mall.platform.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.StoreCategoryDTO;
 import com.perenc.mall.platform.entity.vo.StoreCategoryVO;
 
@@ -50,11 +51,11 @@ public interface IStoreCategoryService {
     /**
      * @description: 获取店铺分类列表
      * @param
-     * @return java.util.List<com.perenc.mall.platform.entity.model.StoreCategoryVO>
+     * @return java.util.List<com.perenc.mall.platform.entity.vo.StoreCategoryVO>
      * @author: GR
      * @date: 2019/9/17
      */
-    List<StoreCategoryVO> listStoreCategory();
+    PageVO<StoreCategoryVO> listStoreCategory(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 更新店铺分类

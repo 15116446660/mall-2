@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.PlateDTO;
 import com.perenc.mall.merchant.entity.model.PlateDO;
 import com.perenc.mall.merchant.entity.vo.PlateVO;
@@ -58,9 +59,9 @@ public class PlateController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<PlateDO> listPlates() {
-        return service.listPlate();
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<PlateVO> listPlates(Integer currentPage, Integer pageSize) {
+        return service.listPlate(currentPage,pageSize);
     }
 
     /**

@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.StoreGradeDTO;
 import com.perenc.mall.platform.entity.model.StoreGradeDO;
 import com.perenc.mall.platform.entity.vo.StoreGradeVO;
@@ -60,10 +61,10 @@ public class StoreGradeController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<StoreGradeDO> listStoreGrades() {
-        List<StoreGradeDO> listStoreGradeDO = service.listStoreGrade();
-        return listStoreGradeDO;
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<StoreGradeVO> listStoreGrades(Integer currentPage, Integer pageSize) {
+        PageVO<StoreGradeVO> pageVO = service.listStoreGrade(currentPage,pageSize);
+        return pageVO;
     }
 
     /**

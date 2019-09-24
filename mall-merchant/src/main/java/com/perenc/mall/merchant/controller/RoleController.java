@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.RoleDTO;
 import com.perenc.mall.merchant.entity.vo.RoleVO;
 import com.perenc.mall.merchant.service.IRoleService;
@@ -59,10 +60,10 @@ public class RoleController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<RoleVO> listRoles() {
-        List<RoleVO> listRoleVO = service.listRoles();
-        return listRoleVO;
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<RoleVO> listRoles(Integer currentPage, Integer pageSize) {
+        PageVO<RoleVO> pageVO = service.listRoles(currentPage,pageSize);
+        return pageVO;
     }
 
     /**

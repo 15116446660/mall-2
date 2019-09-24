@@ -1,5 +1,7 @@
 package com.perenc.mall.merchant.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.RoleDTO;
 import com.perenc.mall.merchant.entity.vo.RoleVO;
 
@@ -55,7 +57,7 @@ public interface IRoleService {
      * @author: GR
      * @date: 2019/9/17
      */
-    List<RoleVO> listRoles();
+    PageVO<RoleVO> listRoles(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 获取角色列表

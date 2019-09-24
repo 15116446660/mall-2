@@ -1,11 +1,16 @@
 package com.perenc.mall.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
+import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.BannerDTO;
 import com.perenc.mall.platform.entity.model.BannerDO;
+import com.perenc.mall.platform.entity.vo.BannerVO;
 import com.perenc.mall.platform.mapper.BannerMapper;
 import com.perenc.mall.platform.service.IBannerService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,12 +57,24 @@ public class BannerServiceImpl extends BaseService<BannerMapper, BannerDO> imple
 
 
     @Override
-    public List<BannerDO> listBanners() {
-        QueryWrapper<BannerDO> queryWrapper = new QueryWrapper<>();
-        // 进行升序排序
-        queryWrapper.orderByAsc(CommonFiledConstants.FILED_SORT);
-        List<BannerDO> listBanner = super.listEntitys(queryWrapper);
-        return listBanner;
+    public PageVO<BannerVO> listBanners(Integer currentPage, Integer pageSize) {
+        IPage<BannerDO> iPage = super.listEntitysByPage(new Page<BannerDO>(currentPage, pageSize), new QueryWrapper<BannerDO>()
+                .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())
+                .orderByAsc(CommonFiledConstants.FILED_SORT));
+        List<BannerDO> bannerDOList = iPage.getRecords();
+        List<BannerVO> bannerVOList = new ArrayList<>();
+        bannerDOList.forEach(bannerDO -> {
+            BannerVO bannerVO = BannerVO.build();
+            BeanUtils.copyProperties(bannerDO, bannerVO);
+            bannerVOList.add(bannerVO);
+        });
+
+        return PageVO.<BannerVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(bannerVOList)
+                .setTotal(super.count(new QueryWrapper<BannerDO>()
+                        .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())));
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonConstants;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.constant.ContextConstants;
@@ -10,6 +12,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.util.EntityUtils;
 import com.perenc.mall.common.util.ListUtils;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.RoleDTO;
 import com.perenc.mall.merchant.entity.model.RelatedRoleMenuDO;
 import com.perenc.mall.merchant.entity.model.RoleDO;
@@ -125,17 +128,23 @@ public class RoleServiceImpl extends BaseService<RoleMapper, RoleDO> implements 
     }
 
     @Override
-    public List<RoleVO> listRoles() {
-        List<RoleDO> roleDOList = super.listEntitys(new QueryWrapper<RoleDO>()
+    public PageVO<RoleVO> listRoles(Integer currentPage, Integer pageSize) {
+        IPage<RoleDO> iPage = super.listEntitysByPage(new Page<RoleDO>(currentPage, pageSize), new QueryWrapper<RoleDO>()
                 .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId()));
-
+        List<RoleDO> roleDOList = iPage.getRecords();
         List<RoleVO> roleVOList = new ArrayList<>();
         roleDOList.forEach(roleDO -> {
-            RoleVO roleVO = RoleVO.build();
-            BeanUtils.copyProperties(roleDO, roleVO);
-            roleVOList.add(roleVO);
+            RoleVO plateVO = RoleVO.build();
+            BeanUtils.copyProperties(roleDO, plateVO);
+            roleVOList.add(plateVO);
         });
-        return roleVOList;
+
+        return PageVO.<RoleVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(roleVOList)
+                .setTotal(super.count(new QueryWrapper<RoleDO>()
+                        .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())));
     }
 
     /**

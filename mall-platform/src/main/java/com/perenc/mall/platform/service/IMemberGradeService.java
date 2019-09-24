@@ -1,5 +1,6 @@
 package com.perenc.mall.platform.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.MemberGradeDTO;
 import com.perenc.mall.platform.entity.vo.MemberGradeVO;
 
@@ -55,7 +56,7 @@ public interface IMemberGradeService {
      * @author: GR
      * @date: 2019/9/19
      */
-    List<MemberGradeVO> listMemberGrade();
+    PageVO<MemberGradeVO> listMemberGrade(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 更新会员等级信息

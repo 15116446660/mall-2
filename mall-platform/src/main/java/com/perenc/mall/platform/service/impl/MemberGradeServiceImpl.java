@@ -1,9 +1,13 @@
 package com.perenc.mall.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
+import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.MemberGradeDTO;
 import com.perenc.mall.platform.entity.model.MemberDO;
 import com.perenc.mall.platform.entity.model.MemberGradeDO;
@@ -61,22 +65,26 @@ public class MemberGradeServiceImpl extends BaseService<MemberGradeMapper, Membe
     }
 
     @Override
-    public List<MemberGradeVO> listMemberGrade() {
-        List<MemberGradeDO> memberGradeDOList = super.listEntitys(null);
+    public PageVO<MemberGradeVO> listMemberGrade(Integer currentPage, Integer pageSize) {
+        IPage<MemberGradeDO> iPage = super.listEntitysByPage(new Page<MemberGradeDO>(currentPage, pageSize), null);
+        List<MemberGradeDO> memberGradeDOList = iPage.getRecords();
         List<MemberGradeVO> memberGradeVOList = new ArrayList<>();
         memberGradeDOList.forEach(memberGradeDO -> {
             MemberGradeVO memberGradeVO = MemberGradeVO.build();
             BeanUtils.copyProperties(memberGradeDO, memberGradeVO);
             memberGradeVOList.add(memberGradeVO);
         });
-        return memberGradeVOList;
+        return PageVO.<MemberGradeVO>build().setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(memberGradeVOList)
+                .setTotal(super.count(null));
     }
 
     @Override
     public void updateMemberGrade(MemberGradeDTO memberGradeDTO) {
         MemberGradeDO memberGradeDO = MemberGradeDO.build();
         BeanUtils.copyProperties(memberGradeDTO, memberGradeDO);
-        
+
         auditNameAndLevel(memberGradeDO);
 
         super.updateEntity(memberGradeDO);

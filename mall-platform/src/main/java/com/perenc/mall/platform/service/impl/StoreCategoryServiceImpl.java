@@ -1,11 +1,15 @@
 package com.perenc.mall.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.StoreCategoryDTO;
 import com.perenc.mall.platform.entity.model.StoreCategoryDO;
+import com.perenc.mall.platform.entity.model.StoreGradeDO;
 import com.perenc.mall.platform.entity.vo.StoreCategoryVO;
 import com.perenc.mall.platform.mapper.StoreCategoryMapper;
 import com.perenc.mall.platform.service.IStoreCategoryService;
@@ -93,10 +97,21 @@ public class StoreCategoryServiceImpl extends BaseService<StoreCategoryMapper, S
     }
 
     @Override
-    public List<StoreCategoryVO> listStoreCategory() {
-        // 获取所有店铺分类
-        List<StoreCategoryDO> storeCategoryDOList = super.listEntitys(null);
-        return recursiveQuery(storeCategoryDOList, TOP_Store_CATEGORY);
+    public PageVO<StoreCategoryVO> listStoreCategory(Integer currentPage, Integer pageSize) {
+        IPage<StoreCategoryDO> iPage = super.listEntitysByPage(new Page<StoreCategoryDO>(currentPage, pageSize), null);
+        List<StoreCategoryDO> storeCategoryDOList = iPage.getRecords();
+        List<StoreCategoryVO> storeCategoryVOList = new ArrayList<>();
+        storeCategoryDOList.forEach(storeCategoryDO -> {
+            StoreCategoryVO storeCategoryVO = StoreCategoryVO.build();
+            BeanUtils.copyProperties(storeCategoryDO, storeCategoryVO);
+            storeCategoryVOList.add(storeCategoryVO);
+        });
+//        return recursiveQuery(storeCategoryDOList, TOP_Store_CATEGORY);
+        return PageVO.<StoreCategoryVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(storeCategoryVOList)
+                .setTotal(super.count(null));
     }
 
 

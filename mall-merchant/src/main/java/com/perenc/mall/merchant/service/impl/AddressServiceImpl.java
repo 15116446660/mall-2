@@ -1,11 +1,14 @@
 package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.constant.StatusConstants;
 import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.AddressDTO;
 import com.perenc.mall.merchant.entity.model.AddressDO;
 import com.perenc.mall.merchant.entity.vo.AddressVO;
@@ -67,16 +70,22 @@ public class AddressServiceImpl extends BaseService<AddressMapper, AddressDO> im
     }
 
     @Override
-    public List<AddressVO> listAddress() {
-        List<AddressDO> addressDOList = super.listEntitys(new QueryWrapper<AddressDO>()
+    public PageVO<AddressVO> listAddress(Integer currentPage, Integer pageSize) {
+        IPage<AddressDO> iPage = super.listEntitysByPage(new Page<AddressDO>(currentPage, pageSize), new QueryWrapper<AddressDO>()
                 .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId()));
+        List<AddressDO> addressDOList = iPage.getRecords();
         List<AddressVO> addressVOList = new ArrayList<>();
         addressDOList.forEach(addressDO -> {
             AddressVO addressVO = AddressVO.build();
             BeanUtils.copyProperties(addressDO, addressVO);
             addressVOList.add(addressVO);
         });
-        return addressVOList;
+
+        return PageVO.<AddressVO>build().setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(addressVOList)
+                .setTotal(super.count(new QueryWrapper<AddressDO>()
+                        .eq(CommonFiledConstants.FILED_USER_ID, BaseContextHandler.getUserID())));
     }
 
     @Override

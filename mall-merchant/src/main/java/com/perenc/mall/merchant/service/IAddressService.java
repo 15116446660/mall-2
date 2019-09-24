@@ -1,5 +1,6 @@
 package com.perenc.mall.merchant.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.AddressDTO;
 import com.perenc.mall.merchant.entity.model.AddressDO;
 import com.perenc.mall.merchant.entity.vo.AddressVO;
@@ -55,7 +56,7 @@ public interface IAddressService {
      * @author: GR
      * @date: 2019/9/17
      */
-    List<AddressVO> listAddress();
+    PageVO<AddressVO> listAddress(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 获取地址列表

@@ -1,6 +1,8 @@
 package com.perenc.mall.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.constant.JumpTypeConstants;
 import com.perenc.mall.common.constant.PunctuationConstants;
@@ -9,6 +11,7 @@ import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.util.EntityUtils;
 import com.perenc.mall.common.util.ListUtils;
 import com.perenc.mall.common.util.StringHelper;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.NavMenuDTO;
 import com.perenc.mall.platform.entity.model.*;
 import com.perenc.mall.platform.entity.vo.AdvertiseVO;
@@ -247,8 +250,20 @@ public class NavMenuServiceImpl extends BaseService<NavMenuMapper, NavMenuDO> im
     }
 
     @Override
-    public List<NavMenuDO> listNavMenus() {
-        return super.listEntitys(new QueryWrapper<NavMenuDO>().orderByAsc(CommonFiledConstants.FILED_SORT));
+    public PageVO<NavMenuVO> listNavMenus(Integer currentPage, Integer pageSize) {
+        IPage<NavMenuDO> iPage = super.listEntitysByPage(new Page<NavMenuDO>(currentPage, pageSize), null);
+        List<NavMenuDO> navMenuDOList = iPage.getRecords();
+        List<NavMenuVO> navMenuVOList = new ArrayList<>();
+        navMenuDOList.forEach(navMenuDO -> {
+            NavMenuVO navMenuVO = NavMenuVO.build();
+            BeanUtils.copyProperties(navMenuDO, navMenuVO);
+            navMenuVOList.add(navMenuVO);
+        });
+        return PageVO.<NavMenuVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(navMenuVOList)
+                .setTotal(super.count(null));
     }
 
     @Override

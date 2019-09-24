@@ -1,5 +1,6 @@
 package com.perenc.mall.merchant.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.UserDTO;
 import com.perenc.mall.merchant.entity.vo.UserVO;
 
@@ -55,7 +56,7 @@ public interface IUserService {
      * @author: GR
      * @date: 2019/9/17
      */
-    List<UserVO> listUsers();
+    PageVO<UserVO> listUsers(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 获取用户列表

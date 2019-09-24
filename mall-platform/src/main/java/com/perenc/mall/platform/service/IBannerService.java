@@ -1,9 +1,10 @@
 package com.perenc.mall.platform.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.BannerDTO;
 import com.perenc.mall.platform.entity.model.BannerDO;
+import com.perenc.mall.platform.entity.vo.BannerVO;
 
-import java.util.List;
 
 /**
  * @ClassName: IBannerService
@@ -51,11 +52,11 @@ public interface IBannerService {
     /**
      * @description: 获取轮播图列表
      * @param
-     * @return java.util.List<com.perenc.mall.platform.entity.model.BannerDO>
+     * @return java.util.List<com.perenc.mall.platform.entity.vo.BannerVO>
      * @author: GR
      * @date: 2019/9/17
      */
-    List<BannerDO> listBanners();
+    PageVO<BannerVO> listBanners(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 获取轮播图列表

@@ -1,11 +1,15 @@
 package com.perenc.mall.platform.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.StoreGradeDTO;
 import com.perenc.mall.platform.entity.model.StoreGradeDO;
+import com.perenc.mall.platform.entity.vo.StoreCategoryVO;
 import com.perenc.mall.platform.entity.vo.StoreGradeVO;
+import com.perenc.mall.platform.entity.vo.StoreVO;
 import com.perenc.mall.platform.mapper.StoreGradeMapper;
 import com.perenc.mall.platform.service.IStoreGradeService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,8 +60,20 @@ public class StoreGradeServiceImpl extends BaseService<StoreGradeMapper, StoreGr
     }
 
     @Override
-    public List<StoreGradeDO> listStoreGrade() {
-        return super.listEntitys(null);
+    public PageVO<StoreGradeVO> listStoreGrade(Integer currentPage, Integer pageSize) {
+        IPage<StoreGradeDO> iPage = super.listEntitysByPage(new Page<StoreGradeDO>(currentPage, pageSize), null);
+        List<StoreGradeDO> storeGradeDOList = iPage.getRecords();
+        List<StoreGradeVO> storeGradeVOList = new ArrayList<>();
+        storeGradeDOList.forEach(storeGradeDO -> {
+            StoreGradeVO storeGradeVO = StoreGradeVO.build();
+            BeanUtils.copyProperties(storeGradeDO, storeGradeVO);
+            storeGradeVOList.add(storeGradeVO);
+        });
+        return PageVO.<StoreGradeVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(storeGradeVOList)
+                .setTotal(super.count(null));
     }
 
     @Override

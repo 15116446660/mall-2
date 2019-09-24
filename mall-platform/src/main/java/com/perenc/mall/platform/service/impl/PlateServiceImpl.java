@@ -1,14 +1,18 @@
 package com.perenc.mall.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.constant.PlateTypeConstants;
 import com.perenc.mall.common.constant.PunctuationConstants;
+import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
 import com.perenc.mall.common.util.EntityUtils;
 import com.perenc.mall.common.util.ListUtils;
 import com.perenc.mall.common.util.StringHelper;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.PlateDTO;
 import com.perenc.mall.platform.entity.model.*;
 import com.perenc.mall.platform.entity.vo.*;
@@ -342,8 +346,21 @@ public class PlateServiceImpl extends BaseService<PlateMapper, PlateDO> implemen
     }
 
     @Override
-    public List<PlateDO> listPlate() {
-        return super.listEntitys(new QueryWrapper<PlateDO>().orderByAsc(CommonFiledConstants.FILED_SORT));
+    public PageVO<PlateVO> listPlate(Integer currentPage, Integer pageSize) {
+        IPage<PlateDO> iPage = super.listEntitysByPage(new Page<PlateDO>(currentPage, pageSize), null);
+        List<PlateDO> plateDOList = iPage.getRecords();
+        List<PlateVO> plateVOList = new ArrayList<>();
+        plateDOList.forEach(plateDO -> {
+            PlateVO plateVO = PlateVO.build();
+            BeanUtils.copyProperties(plateDO, plateVO);
+            plateVOList.add(plateVO);
+        });
+
+        return PageVO.<PlateVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(plateVOList)
+                .setTotal(super.count(null));
     }
 
     @Override

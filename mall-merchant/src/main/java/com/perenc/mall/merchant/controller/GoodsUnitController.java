@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.GoodsUnitDTO;
 import com.perenc.mall.merchant.entity.vo.GoodsUnitVO;
 import com.perenc.mall.merchant.service.IGoodsUnitService;
@@ -59,10 +60,10 @@ public class GoodsUnitController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<GoodsUnitVO> listGoodsUnits() {
-        List<GoodsUnitVO> listGoodsUnitVO = service.listGoodsUnits();
-        return listGoodsUnitVO;
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<GoodsUnitVO> listGoodsUnits(Integer currentPage, Integer pageSize) {
+        PageVO<GoodsUnitVO> pageVO = service.listGoodsUnits(currentPage,pageSize);
+        return pageVO;
     }
 
     /**

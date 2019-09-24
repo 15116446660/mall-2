@@ -1,10 +1,13 @@
 package com.perenc.mall.merchant.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.perenc.mall.common.constant.CommonFiledConstants;
 import com.perenc.mall.common.context.BaseContextHandler;
 import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.service.BaseService;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.GoodsBrandDTO;
 import com.perenc.mall.merchant.entity.model.GoodsBrandDO;
 import com.perenc.mall.merchant.entity.vo.GoodsBrandVO;
@@ -64,16 +67,23 @@ public class GoodsBrandServiceImpl extends BaseService<GoodsBrandMapper, GoodsBr
     }
 
     @Override
-    public List<GoodsBrandVO> listGoodsBrands() {
-        List<GoodsBrandDO> goodsBrandDOList = super.listEntitys(new QueryWrapper<GoodsBrandDO>()
+    public PageVO<GoodsBrandVO> listGoodsBrands(Integer currentPage, Integer pageSize) {
+
+        IPage<GoodsBrandDO> iPage = super.listEntitysByPage(new Page<GoodsBrandDO>(currentPage, pageSize), new QueryWrapper<GoodsBrandDO>()
                 .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId()));
+        List<GoodsBrandDO> goodsBrandDOList = iPage.getRecords();
         List<GoodsBrandVO> goodsBrandVOList = new ArrayList<>();
         goodsBrandDOList.forEach(goodsBrandDO -> {
             GoodsBrandVO goodsBrandVO = GoodsBrandVO.build();
             BeanUtils.copyProperties(goodsBrandDO, goodsBrandVO);
             goodsBrandVOList.add(goodsBrandVO);
         });
-        return goodsBrandVOList;
+        return PageVO.<GoodsBrandVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(goodsBrandVOList)
+                .setTotal(super.count(new QueryWrapper<GoodsBrandDO>()
+                        .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())));
     }
 
     @Override

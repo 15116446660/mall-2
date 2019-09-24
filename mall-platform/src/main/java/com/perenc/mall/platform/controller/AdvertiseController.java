@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.AdvertiseDTO;
 import com.perenc.mall.platform.entity.dto.BannerDTO;
 import com.perenc.mall.platform.entity.model.AdvertiseDO;
@@ -64,9 +65,9 @@ public class AdvertiseController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<AdvertiseDO> listAdvertises() {
-        return service.listAdvertises();
+    @RequestMapping(value = "page", method = RequestMethod.GET)
+    public PageVO<AdvertiseDO> listAdvertises(Integer currentPage, Integer pageSize) {
+        return service.listAdvertises(currentPage,pageSize);
     }
 
     /**

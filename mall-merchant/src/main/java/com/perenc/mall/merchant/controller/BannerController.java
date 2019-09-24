@@ -4,6 +4,7 @@ import com.perenc.mall.common.exception.BusinessException;
 import com.perenc.mall.common.exception.ValidResultException;
 import com.perenc.mall.common.result.JsonResult;
 import com.perenc.mall.common.result.Result;
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.BannerDTO;
 import com.perenc.mall.merchant.entity.model.BannerDO;
 import com.perenc.mall.merchant.entity.vo.BannerVO;
@@ -60,10 +61,10 @@ public class BannerController {
      * @author: GR
      * @date: 2019/9/17
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
-    public List<BannerVO> listBanners() {
-        List<BannerVO> listBannerBannerVO = service.listBanners();
-        return listBannerBannerVO;
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageVO<BannerVO> listBanners(Integer currentPage, Integer pageSize) {
+        PageVO<BannerVO> pageVO = service.listBanners(currentPage,pageSize);
+        return pageVO;
     }
 
     /**

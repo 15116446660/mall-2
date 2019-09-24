@@ -1,5 +1,6 @@
 package com.perenc.mall.merchant.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.GoodsUnitDTO;
 import com.perenc.mall.merchant.entity.vo.GoodsUnitVO;
 
@@ -54,7 +55,7 @@ public interface IGoodsUnitService {
      * @author: GR
      * @date: 2019/9/17
      */
-    List<GoodsUnitVO> listGoodsUnits();
+    PageVO<GoodsUnitVO> listGoodsUnits(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 获取商品单位列表

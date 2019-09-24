@@ -1,5 +1,6 @@
 package com.perenc.mall.platform.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.platform.entity.dto.PlateDTO;
 import com.perenc.mall.platform.entity.model.PlateDO;
 import com.perenc.mall.platform.entity.vo.PlateVO;
@@ -51,11 +52,11 @@ public interface IPlateService {
     /**
      * @description: 获取板块信息列表
      * @param
-     * @return java.util.List<com.perenc.mall.platform.entity.model.PlateDO>
+     * @return java.util.List<com.perenc.mall.platform.entity.vo.PlateVO>
      * @author: GR
      * @date: 2019/9/17
      */
-    List<PlateDO> listPlate();
+    PageVO<PlateVO> listPlate(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 更新板块信息

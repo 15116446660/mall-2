@@ -1,5 +1,6 @@
 package com.perenc.mall.merchant.service;
 
+import com.perenc.mall.common.vo.PageVO;
 import com.perenc.mall.merchant.entity.dto.GoodsBrandDTO;
 import com.perenc.mall.merchant.entity.model.GoodsBrandDO;
 import com.perenc.mall.merchant.entity.vo.GoodsBrandVO;
@@ -55,7 +56,7 @@ public interface IGoodsBrandService {
      * @author: GR
      * @date: 2019/9/17
      */
-    List<GoodsBrandVO> listGoodsBrands();
+    PageVO<GoodsBrandVO> listGoodsBrands(Integer currentPage, Integer pageSize);
 
     /**
      * @description: 获取商品品牌列表

@@ -59,7 +59,7 @@ public class MemberController {
      * @author: GR
      * @date: 2019/9/19
      */
-    @RequestMapping(value = "list", method = RequestMethod.POST)
+    @RequestMapping(value = "page", method = RequestMethod.POST)
     public PageVO listMemberDO(Integer currentPage, Integer pageSize,
                                @RequestParam(required = false) String name,
                                @RequestParam(required = false) String phone,

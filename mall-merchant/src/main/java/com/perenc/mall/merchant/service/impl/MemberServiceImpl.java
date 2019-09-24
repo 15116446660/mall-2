@@ -92,38 +92,22 @@ public class MemberServiceImpl extends BaseService<MemberMapper, MemberDO> imple
 
     @Override
     public PageVO listMember(int currentPage, int pageSize, String name, String phone, Integer level, Integer sex) {
-        Page<PlatFormMemberDO> page = new Page<>(currentPage, pageSize);
-        QueryWrapper<PlatFormMemberDO> queryWrapper = new QueryWrapper<>();
-        if (!StringUtils.isBlank(name)) {
-            queryWrapper.like("name", name);
-        }
 
-        if (!StringUtils.isBlank(phone)) {
-            queryWrapper.eq("phone", phone);
-        }
-
-//        if (null != level) {
-//            queryWrapper.eq("level", level);
-//        }
-
-        if (null != sex) {
-            queryWrapper.eq("sex", sex);
-        }
-
-//        IPage<PlatFormMemberDO> iPage = super.listEntitysByPage(page, queryWrapper);
-//        List<MemberDO> storeDOList = iPage.getRecords();
-//        List<MemberVO> storeVOList = new ArrayList<>();
-//        storeDOList.forEach(storeDO -> {
-//            MemberVO storeVO = MemberVO.build();
-//            BeanUtils.copyProperties(storeDO, storeVO);
-//            storeVOList.add(storeVO);
-//        });
-//
-//        return PageVO.<MemberVO>build().setCurrentPage(currentPage)
-//                .setPageSize(pageSize)
-//                .setTotal(super.count(queryWrapper))
-//                .setList(storeVOList);
-        return PageVO.build();
+        IPage<MemberDO> iPage = super.listEntitysByPage(new Page<MemberDO>(currentPage, pageSize), new QueryWrapper<MemberDO>()
+                .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId()));
+        List<MemberDO> memberDOList = iPage.getRecords();
+        List<MemberVO> memberVOList = new ArrayList<>();
+        memberDOList.forEach(memberDO -> {
+            MemberVO memberVO = MemberVO.build();
+            BeanUtils.copyProperties(memberDO, memberVO);
+            memberVOList.add(memberVO);
+        });
+        return PageVO.<MemberVO>build()
+                .setCurrentPage(currentPage)
+                .setPageSize(pageSize)
+                .setList(memberVOList)
+                .setTotal(super.count(new QueryWrapper<MemberDO>()
+                        .eq(CommonFiledConstants.FILED_STORE_ID, BaseContextHandler.getStoreId())));
     }
 
 
