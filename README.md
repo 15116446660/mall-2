@@ -230,6 +230,59 @@ API网关方式的核心要点是，所有的客户端和消费端都通过统�
         
 
 ````
+**分布式链路追踪(Spring Cloud Sleuth + Zipkin Server)**
+````
+原因：微服务架构是一个分布式架构，微服务系统按业务划分服务单元，一个微服务系统往往有很多个服务单元。由于服务单元数量众多，业务的复杂性较高，如果
+     出现了错误和异常，很难去定位。主要体现在一个请求可能需要调用很多个服务，而内部服务的调用复杂性决定了问题难以定位。所以在微服务架构中，必须
+     实现分布式链路追踪，去跟进一个请求到底有哪些服务参与，参与的顺序又是怎样的，从而达到每个请求的步骤清晰可见，出了问题能够快速定位的目的。
+
+Spring Cloud Sleuth:
+    为服务之间调用提供链路追踪。通过 Sleuth 可以很清楚的了解到一个服务请求经过了哪些服务，每个服务处理花费了多长。从而让我们可以很方便的理清各
+    微服务间的调用关系。此外 Sleuth 可以帮助我们：
+
+    耗时分析: 通过 Sleuth 可以很方便的了解到每个采样请求的耗时，从而分析出哪些服务调用比较耗时;
+    可视化错误: 对于程序未捕捉的异常，可以通过集成 Zipkin 服务界面上看到;
+    链路优化: 对于调用比较频繁的服务，可以针对这些服务实施一些优化措施。
+
+Zipkin:
+    一种分布式链路追踪系统。 它有助于收集解决微服务架构中的延迟问题所需的时序数据。 它管理这些数据的收集和查找
+
+    Collector：收集器组件，它主要用于处理从外部系统发送过来的跟踪信息，将这些信息转换为 Zipkin 内部处理的 Span 格式，以支持后续的存储、分
+    析、展示等功能。
+    Storage：存储组件，它主要对处理收集器接收到的跟踪信息，默认会将这些信息存储在内存中，我们也可以修改此存储策略，通过使用其他存储组件将跟踪
+    信息存储到数据库中。
+    RESTful API：API 组件，它主要用来提供外部访问接口。比如给客户端展示跟踪信息，或是外接系统访问以实现监控等。
+    Web UI：UI 组件，基于 API 组件实现的上层应用。通过 UI 组件用户可以方便而有直观地查询和分析跟踪信息
+
+
+使用：(1).添加依赖：
+        <dependency>
+        	<groupId>org.springframework.cloud</groupId>
+        	<artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework.cloud</groupId>
+        	<artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+      
+     (2).配置:(所有服务模块都要进行设置)
+        spring:
+          sleuth:
+            web:
+              client:
+                enabled: true
+            sampler:
+              # 将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
+              probability: 1.0 
+          zipkin:
+            # 指定了 Zipkin 服务器的地址
+            base-url: http://localhost:9411
+            
+     (3).下载Zipkin jar，并启动：(http://localhost:9411)
+        执行：java -jar zipkin-server-2.17.2-exec.jar
+
+ 
+````
 **3、开发规范:**
 
 (1).【参考】分层领域模型规约：   
