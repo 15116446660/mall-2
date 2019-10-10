@@ -336,7 +336,7 @@ ResultHandler进行赋值。对于业务层无需返回数据的API（即void方
        goodsDTO.setName("XXXX");
        String name = goodsDTO.getName();
      
-    (非必须)也可使用今天方法获取对象实例注解:@NoArgsConstructor(staticName = "build")
+    (非必须)也可使用静态方法获取对象实例注解:@NoArgsConstructor(staticName = "build")
     如：
        @Data
        @NoArgsConstructor(staticName = "build")
@@ -394,6 +394,7 @@ DTO、DO、VO之间的互相转化：
 ````
 (9).类、方法、字段添加相关注释说明
 ````
+添加适当的注释
 ````
 (10).其他
 ````
